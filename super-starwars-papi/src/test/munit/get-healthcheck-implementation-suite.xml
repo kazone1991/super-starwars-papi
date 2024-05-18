@@ -1,88 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
-	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+<mule
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xsi:schemaLocation="
 		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
 		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
-	<munit:config name="get-healthcheck-implementation-suite.xml" />
-	<munit:test name="get-healthcheck-implementation-test" doc:id="18b22754-957a-469c-9ffb-680207765563" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock common-http-request-flow" doc:id="9b9ea989-8579-4d22-a43e-aed695648706" processor="flow-ref">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="24a80372-aa2d-470f-8236-39f151d74748" attributeName="doc:id" />
+	<munit:config
+		name="get-healthcheck-implementation-suite.xml" />
+	<munit:test
+		name="get-healthcheck-implementation-test"
+		doc:id="18b22754-957a-469c-9ffb-680207765563">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock common-http-request-flow"
+				doc:id="9b9ea989-8579-4d22-a43e-aed695648706"
+				processor="flow-ref">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="24a80372-aa2d-470f-8236-39f151d74748"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/json --- readUrl('classpath://gethealthcheckimplementationtest/mock_payload.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					<munit-tools:attributes value="#[readUrl('classpath://gethealthcheckimplementationtest/mock_attributes.dwl')]" />
-					<munit-tools:variables >
-						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://gethealthcheckimplementationtest/mock_variable_.dwl')]" />
-						<munit-tools:variable key="httpRequest" value="#[output application/json --- readUrl('classpath://gethealthcheckimplementationtest/mock_variable_1.dwl')]" mediaType="application/json" encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/json --- readUrl('classpath://gethealthcheckimplementationtest/mock_payload.dwl')]"
+						mediaType="application/json"
+						encoding="UTF-8" />
+					<munit-tools:attributes
+						value="#[readUrl('classpath://gethealthcheckimplementationtest/mock_attributes.dwl')]" />
+					<munit-tools:variables>
+						<munit-tools:variable
+							key="outboundHeaders"
+							value="#[readUrl('classpath://gethealthcheckimplementationtest/mock_variable_.dwl')]" />
+						<munit-tools:variable
+							key="httpRequest"
+							value="#[output application/json --- readUrl('classpath://gethealthcheckimplementationtest/mock_variable_1.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit-tools:spy doc:name="Spy Set httpRequest Variable" doc:id="045e03c0-3d64-4657-ada4-cd76aa394991" processor="ee:transform">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="727ef4b9-9448-470a-b58f-0d785179d25d" attributeName="doc:id" />
+			<munit-tools:spy
+				doc:name="Spy Set httpRequest Variable"
+				doc:id="045e03c0-3d64-4657-ada4-cd76aa394991"
+				processor="ee:transform">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="727ef4b9-9448-470a-b58f-0d785179d25d"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:after-call >
-					<munit-tools:assert doc:name="Assert variables" doc:id="753858c9-96b0-44a2-8805-6918d64486b6" message="The variables do not match">
-						<munit-tools:that ><![CDATA[#[%dw 2.0
+				<munit-tools:after-call>
+					<munit-tools:assert
+						doc:name="Assert variables"
+						doc:id="753858c9-96b0-44a2-8805-6918d64486b6"
+						message="The variables do not match">
+						<munit-tools:that><![CDATA[#[%dw 2.0
 import gethealthcheckimplementationtest::spy_assert_variables
 ---
 spy_assert_variables::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 					</munit-tools:assert>
 				</munit-tools:after-call>
 			</munit-tools:spy>
-			<munit-tools:spy doc:name="Spy Set Health Response - OK" doc:id="b2fb9f88-7330-4303-accb-35ee5fd5ad0c" processor="ee:transform">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="63ca93f1-9ee2-4c73-bedc-d89c25c09341" attributeName="doc:id" />
+			<munit-tools:spy
+				doc:name="Spy Set Health Response - OK"
+				doc:id="b2fb9f88-7330-4303-accb-35ee5fd5ad0c"
+				processor="ee:transform">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="63ca93f1-9ee2-4c73-bedc-d89c25c09341"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:before-call >
-					<munit-tools:assert doc:name="Assert payload" doc:id="13e03690-4af5-4873-8982-f2c835158df5" message="The payload does not match">
-						<munit-tools:that ><![CDATA[#[%dw 2.0
+				<munit-tools:before-call>
+					<munit-tools:assert
+						doc:name="Assert payload"
+						doc:id="13e03690-4af5-4873-8982-f2c835158df5"
+						message="The payload does not match">
+						<munit-tools:that><![CDATA[#[%dw 2.0
 import gethealthcheckimplementationtest::spy_assert_payload
 ---
 spy_assert_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 					</munit-tools:assert>
 				</munit-tools:before-call>
-				<munit-tools:after-call >
-					<munit-tools:assert doc:name="Assert payload" doc:id="57c818e0-893b-4e3d-a0f1-80c140cefec0" message="The payload does not match">
-						<munit-tools:that ><![CDATA[#[%dw 2.0
+				<munit-tools:after-call>
+					<munit-tools:assert
+						doc:name="Assert payload"
+						doc:id="57c818e0-893b-4e3d-a0f1-80c140cefec0"
+						message="The payload does not match">
+						<munit-tools:that><![CDATA[#[%dw 2.0
 import gethealthcheckimplementationtest::spy_assert_payload1
 ---
 spy_assert_payload1::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 					</munit-tools:assert>
 				</munit-tools:after-call>
 			</munit-tools:spy>
-			<munit:set-event doc:name="Set Input" doc:id="fea3d2d0-32fb-406c-bf02-4867b8e6d6d3" >
-				<munit:payload value="#[readUrl('classpath://gethealthcheckimplementationtest/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://gethealthcheckimplementationtest/set-event_attributes.dwl')]" />
-				<munit:variables >
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://gethealthcheckimplementationtest/set-event_variable_.dwl')]" />
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="fea3d2d0-32fb-406c-bf02-4867b8e6d6d3">
+				<munit:payload
+					value="#[readUrl('classpath://gethealthcheckimplementationtest/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://gethealthcheckimplementationtest/set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable
+						key="outboundHeaders"
+						value="#[readUrl('classpath://gethealthcheckimplementationtest/set-event_variable_.dwl')]" />
 				</munit:variables>
 			</munit:set-event>
 		</munit:behavior>
-		<munit:execution >
-			<flow-ref doc:name="Flow-ref to get-healthcheck-implementation" doc:id="443ec07b-4c49-42bf-88ff-c539eec66cdf" name="get-healthcheck-implementation"/>
+		<munit:execution>
+			<flow-ref
+				doc:name="Flow-ref to get-healthcheck-implementation"
+				doc:id="443ec07b-4c49-42bf-88ff-c539eec66cdf"
+				name="get-healthcheck-implementation" />
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="78a156c5-f4fb-4f6e-ac6d-bf37574cd0cb" message="The payload does not match">
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="78a156c5-f4fb-4f6e-ac6d-bf37574cd0cb"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import gethealthcheckimplementationtest::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 			</munit-tools:assert>
-			<munit-tools:verify-call doc:name="Verify Set httpRequest Variable" doc:id="21bb7171-fb9a-44c9-a5cb-f372620b8a7d" processor="ee:transform" times="1">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="727ef4b9-9448-470a-b58f-0d785179d25d" attributeName="doc:id" />
+			<munit-tools:verify-call
+				doc:name="Verify Set httpRequest Variable"
+				doc:id="21bb7171-fb9a-44c9-a5cb-f372620b8a7d"
+				processor="ee:transform"
+				times="1">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="727ef4b9-9448-470a-b58f-0d785179d25d"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
-			<munit-tools:verify-call doc:name="Verify Set Health Response - OK" doc:id="8f23e94a-a6b0-45d5-9681-c75fb4235127" processor="ee:transform" times="1">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="63ca93f1-9ee2-4c73-bedc-d89c25c09341" attributeName="doc:id" />
+			<munit-tools:verify-call
+				doc:name="Verify Set Health Response - OK"
+				doc:id="8f23e94a-a6b0-45d5-9681-c75fb4235127"
+				processor="ee:transform"
+				times="1">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="63ca93f1-9ee2-4c73-bedc-d89c25c09341"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
 		</munit:validation>

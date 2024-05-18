@@ -1,187 +1,353 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
-	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+<mule
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xsi:schemaLocation="
 		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
 		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
-	<munit:config name="get-characters-implementation-suite.xml" />
-	<munit:test name="get-characters-flow-test" doc:id="f1910f1f-0a34-44c2-bee0-de20e437fd37" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock get-characters-pagination-subflow" doc:id="7037f5bd-694b-4f1d-8562-837809dd55b5" processor="flow-ref">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="05a50248-24e0-4e38-8b3c-d053f3dd6cd6" attributeName="doc:id" />
+	<munit:config
+		name="get-characters-implementation-suite.xml" />
+	<munit:test
+		name="get-characters-flow-test"
+		doc:id="f1910f1f-0a34-44c2-bee0-de20e437fd37">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock get-characters-pagination-subflow"
+				doc:id="7037f5bd-694b-4f1d-8562-837809dd55b5"
+				processor="flow-ref">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="05a50248-24e0-4e38-8b3c-d053f3dd6cd6"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_payload.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					<munit-tools:variables >
-						<munit-tools:variable key="characters" value="#[readUrl('classpath://getcharactersflowtest/mock_variable_.dwl')]" />
-						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://getcharactersflowtest/mock_variable_1.dwl')]" />
-						<munit-tools:variable key="pages" value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_2.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="gender" value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_3.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="hypermediaSearch" value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_4.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="paginationAccumulator" value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_5.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="httpRequest" value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_6.dwl')]" mediaType="application/json" encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_payload.dwl')]"
+						mediaType="application/json"
+						encoding="UTF-8" />
+					<munit-tools:variables>
+						<munit-tools:variable
+							key="characters"
+							value="#[readUrl('classpath://getcharactersflowtest/mock_variable_.dwl')]" />
+						<munit-tools:variable
+							key="outboundHeaders"
+							value="#[readUrl('classpath://getcharactersflowtest/mock_variable_1.dwl')]" />
+						<munit-tools:variable
+							key="pages"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_2.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="gender"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_3.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="hypermediaSearch"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_4.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="paginationAccumulator"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_5.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="httpRequest"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_6.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit-tools:mock-when doc:name="Mock get-characters-first-page-subfllow" doc:id="45ed70e6-f0fd-4228-8bcf-5b5da80bf666" processor="flow-ref">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="327494ad-f5f8-4e1b-bd13-1a56a8483a4f" attributeName="doc:id" />
+			<munit-tools:mock-when
+				doc:name="Mock get-characters-first-page-subfllow"
+				doc:id="45ed70e6-f0fd-4228-8bcf-5b5da80bf666"
+				processor="flow-ref">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="327494ad-f5f8-4e1b-bd13-1a56a8483a4f"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_payload1.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					<munit-tools:variables >
-						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://getcharactersflowtest/mock_variable_7.dwl')]" />
-						<munit-tools:variable key="gender" value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_8.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="hypermediaSearch" value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_9.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="paginationAccumulator" value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_10.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="httpRequest" value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_11.dwl')]" mediaType="application/json" encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_payload1.dwl')]"
+						mediaType="application/json"
+						encoding="UTF-8" />
+					<munit-tools:variables>
+						<munit-tools:variable
+							key="outboundHeaders"
+							value="#[readUrl('classpath://getcharactersflowtest/mock_variable_7.dwl')]" />
+						<munit-tools:variable
+							key="gender"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_8.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="hypermediaSearch"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_9.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="paginationAccumulator"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_10.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="httpRequest"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowtest/mock_variable_11.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit-tools:spy doc:name="Spy Map Results to CSV Format" doc:id="71ac27b7-9888-42c7-8251-445ae97085ce" processor="ee:transform">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="f3622a71-f39c-40d2-a246-f2231dbfb920" attributeName="doc:id" />
+			<munit-tools:spy
+				doc:name="Spy Map Results to CSV Format"
+				doc:id="71ac27b7-9888-42c7-8251-445ae97085ce"
+				processor="ee:transform">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="f3622a71-f39c-40d2-a246-f2231dbfb920"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:before-call >
-					<munit-tools:assert doc:name="Assert variables" doc:id="1eb98874-a819-46e2-882f-dc0d9f858dc0" message="The variables do not match">
-						<munit-tools:that ><![CDATA[#[%dw 2.0
+				<munit-tools:before-call>
+					<munit-tools:assert
+						doc:name="Assert variables"
+						doc:id="1eb98874-a819-46e2-882f-dc0d9f858dc0"
+						message="The variables do not match">
+						<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharactersflowtest::spy_assert_variables
 ---
 spy_assert_variables::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 					</munit-tools:assert>
 				</munit-tools:before-call>
-				<munit-tools:after-call >
-					<munit-tools:assert doc:name="Assert payload" doc:id="ea350fb2-75a3-4240-a29c-4db1c02dbc36" message="The payload does not match">
-						<munit-tools:that ><![CDATA[#[%dw 2.0
+				<munit-tools:after-call>
+					<munit-tools:assert
+						doc:name="Assert payload"
+						doc:id="ea350fb2-75a3-4240-a29c-4db1c02dbc36"
+						message="The payload does not match">
+						<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharactersflowtest::spy_assert_payload
 ---
 spy_assert_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 					</munit-tools:assert>
 				</munit-tools:after-call>
 			</munit-tools:spy>
-			<munit:set-event doc:name="Set Input" doc:id="9e251cfd-120d-4bb8-a2ee-0f90cf172c29" >
-				<munit:payload value="#[readUrl('classpath://getcharactersflowtest/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://getcharactersflowtest/set-event_attributes.dwl')]" />
-				<munit:variables >
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://getcharactersflowtest/set-event_variable_.dwl')]" />
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="9e251cfd-120d-4bb8-a2ee-0f90cf172c29">
+				<munit:payload
+					value="#[readUrl('classpath://getcharactersflowtest/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://getcharactersflowtest/set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable
+						key="outboundHeaders"
+						value="#[readUrl('classpath://getcharactersflowtest/set-event_variable_.dwl')]" />
 				</munit:variables>
 			</munit:set-event>
 		</munit:behavior>
-		<munit:execution >
-			<flow-ref doc:name="Flow-ref to get-characters-flow" doc:id="86e6bb2d-8908-46f6-99e6-c4986430fca1" name="get-characters-flow"/>
+		<munit:execution>
+			<flow-ref
+				doc:name="Flow-ref to get-characters-flow"
+				doc:id="86e6bb2d-8908-46f6-99e6-c4986430fca1"
+				name="get-characters-flow" />
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="2dd609cd-df26-425c-a231-4801aaa69da8" message="The payload does not match">
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="2dd609cd-df26-425c-a231-4801aaa69da8"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharactersflowtest::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 			</munit-tools:assert>
-			<munit-tools:verify-call doc:name="Verify Map Results to CSV Format" doc:id="30f18d21-327b-4776-afa8-c8abd2982423" processor="ee:transform" times="1">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="f3622a71-f39c-40d2-a246-f2231dbfb920" attributeName="doc:id" />
+			<munit-tools:verify-call
+				doc:name="Verify Map Results to CSV Format"
+				doc:id="30f18d21-327b-4776-afa8-c8abd2982423"
+				processor="ee:transform"
+				times="1">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="f3622a71-f39c-40d2-a246-f2231dbfb920"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="get-characters-first-page-subfllow-test" doc:id="ecf26220-b733-4ec7-a8cf-e7761f62b76f" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock common-http-request-flow" doc:id="26d4f6d5-c6e7-4d70-879a-3b429d56944c" processor="flow-ref">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="0c090b36-52e6-4ee8-9b8a-b8f866f63a0c" attributeName="doc:id" />
+	<munit:test
+		name="get-characters-first-page-subfllow-test"
+		doc:id="ecf26220-b733-4ec7-a8cf-e7761f62b76f">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock common-http-request-flow"
+				doc:id="26d4f6d5-c6e7-4d70-879a-3b429d56944c"
+				processor="flow-ref">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="0c090b36-52e6-4ee8-9b8a-b8f866f63a0c"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/json --- readUrl('classpath://getcharactersfirstpagesubfllowtest/mock_payload.dwl')]" mediaType="application/json" encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/json --- readUrl('classpath://getcharactersfirstpagesubfllowtest/mock_payload.dwl')]"
+						mediaType="application/json"
+						encoding="UTF-8" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit-tools:spy doc:name="Spy Set Get Characters Variables" doc:id="9203ab94-7b02-4056-9938-29d1652a228a" processor="ee:transform">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="bda372e6-97e0-4120-9ada-b88f301e3fe6" attributeName="doc:id" />
+			<munit-tools:spy
+				doc:name="Spy Set Get Characters Variables"
+				doc:id="9203ab94-7b02-4056-9938-29d1652a228a"
+				processor="ee:transform">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="bda372e6-97e0-4120-9ada-b88f301e3fe6"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:after-call >
-					<munit-tools:assert doc:name="Assert variables" doc:id="01e632fd-8362-496d-af85-8b2c8c08fa21" message="The variables do not match">
-						<munit-tools:that ><![CDATA[#[%dw 2.0
+				<munit-tools:after-call>
+					<munit-tools:assert
+						doc:name="Assert variables"
+						doc:id="01e632fd-8362-496d-af85-8b2c8c08fa21"
+						message="The variables do not match">
+						<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharactersfirstpagesubfllowtest::spy_assert_variables
 ---
 spy_assert_variables::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 					</munit-tools:assert>
 				</munit-tools:after-call>
 			</munit-tools:spy>
-			<munit-tools:spy doc:name="Spy Save First Page Results in Accumulator Variable" doc:id="50bcb889-3446-4f6b-b5c1-272751748ce8" processor="ee:transform">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="22fa2a74-d0cd-4b59-b9d6-409ac821fabc" attributeName="doc:id" />
+			<munit-tools:spy
+				doc:name="Spy Save First Page Results in Accumulator Variable"
+				doc:id="50bcb889-3446-4f6b-b5c1-272751748ce8"
+				processor="ee:transform">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="22fa2a74-d0cd-4b59-b9d6-409ac821fabc"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:before-call >
-					<munit-tools:assert doc:name="Assert payload" doc:id="958955fb-c2c0-41d0-a2c7-feee9056969e" message="The payload does not match">
-						<munit-tools:that ><![CDATA[#[%dw 2.0
+				<munit-tools:before-call>
+					<munit-tools:assert
+						doc:name="Assert payload"
+						doc:id="958955fb-c2c0-41d0-a2c7-feee9056969e"
+						message="The payload does not match">
+						<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharactersfirstpagesubfllowtest::spy_assert_payload
 ---
 spy_assert_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 					</munit-tools:assert>
-					<munit-tools:assert doc:name="Assert variables" doc:id="4c77cc75-9d4e-4057-aef3-56c982138eb6" message="The variables do not match">
-						<munit-tools:that ><![CDATA[#[%dw 2.0
+					<munit-tools:assert
+						doc:name="Assert variables"
+						doc:id="4c77cc75-9d4e-4057-aef3-56c982138eb6"
+						message="The variables do not match">
+						<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharactersfirstpagesubfllowtest::spy_assert_variables1
 ---
 spy_assert_variables1::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 					</munit-tools:assert>
 				</munit-tools:before-call>
-				<munit-tools:after-call >
-					<munit-tools:assert doc:name="Assert variables" doc:id="50d10ffb-a51e-4720-a8f4-2a21f98e24d1" message="The variables do not match">
-						<munit-tools:that ><![CDATA[#[%dw 2.0
+				<munit-tools:after-call>
+					<munit-tools:assert
+						doc:name="Assert variables"
+						doc:id="50d10ffb-a51e-4720-a8f4-2a21f98e24d1"
+						message="The variables do not match">
+						<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharactersfirstpagesubfllowtest::spy_assert_variables2
 ---
 spy_assert_variables2::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 					</munit-tools:assert>
 				</munit-tools:after-call>
 			</munit-tools:spy>
-			<munit:set-event doc:name="Set Input" doc:id="d1910acb-5e97-43a6-bba1-7737df3b2789" >
-				<munit:payload value="#[readUrl('classpath://getcharactersfirstpagesubfllowtest/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://getcharactersfirstpagesubfllowtest/set-event_attributes.dwl')]" />
-				<munit:variables >
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://getcharactersfirstpagesubfllowtest/set-event_variable_.dwl')]" />
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="d1910acb-5e97-43a6-bba1-7737df3b2789">
+				<munit:payload
+					value="#[readUrl('classpath://getcharactersfirstpagesubfllowtest/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://getcharactersfirstpagesubfllowtest/set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable
+						key="outboundHeaders"
+						value="#[readUrl('classpath://getcharactersfirstpagesubfllowtest/set-event_variable_.dwl')]" />
 				</munit:variables>
 			</munit:set-event>
 		</munit:behavior>
-		<munit:execution >
-			<flow-ref doc:name="Flow-ref to get-characters-first-page-subfllow" doc:id="904488d9-5610-4d6d-8dfc-fb65d6a73a5f" name="get-characters-first-page-subfllow"/>
+		<munit:execution>
+			<flow-ref
+				doc:name="Flow-ref to get-characters-first-page-subfllow"
+				doc:id="904488d9-5610-4d6d-8dfc-fb65d6a73a5f"
+				name="get-characters-first-page-subfllow" />
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="ef73c622-3c2f-42e7-9361-27365a92ab04" message="The payload does not match">
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="ef73c622-3c2f-42e7-9361-27365a92ab04"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharactersfirstpagesubfllowtest::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 			</munit-tools:assert>
-			<munit-tools:verify-call doc:name="Verify Set Get Characters Variables" doc:id="ebcd9336-e46b-4106-ba74-e19446d927a5" processor="ee:transform" times="1">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="bda372e6-97e0-4120-9ada-b88f301e3fe6" attributeName="doc:id" />
+			<munit-tools:verify-call
+				doc:name="Verify Set Get Characters Variables"
+				doc:id="ebcd9336-e46b-4106-ba74-e19446d927a5"
+				processor="ee:transform"
+				times="1">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="bda372e6-97e0-4120-9ada-b88f301e3fe6"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
-			<munit-tools:verify-call doc:name="Verify Save First Page Results in Accumulator Variable" doc:id="56e3cd00-cde9-4994-a752-1e09c27e21d2" processor="ee:transform" times="1">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="22fa2a74-d0cd-4b59-b9d6-409ac821fabc" attributeName="doc:id" />
+			<munit-tools:verify-call
+				doc:name="Verify Save First Page Results in Accumulator Variable"
+				doc:id="56e3cd00-cde9-4994-a752-1e09c27e21d2"
+				processor="ee:transform"
+				times="1">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="22fa2a74-d0cd-4b59-b9d6-409ac821fabc"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="get-characters-pagination-subflow-test" doc:id="b8de9695-c3eb-425f-9527-8b3c01ff46e8">
+	<munit:test
+		name="get-characters-pagination-subflow-test"
+		doc:id="b8de9695-c3eb-425f-9527-8b3c01ff46e8">
 		<munit:behavior>
-			<munit-tools:mock-when doc:name="Mock common-http-request-flow" doc:id="f40fde68-60a8-47fb-abe3-342d1c01ff7c" processor="flow-ref">
+			<munit-tools:mock-when
+				doc:name="Mock common-http-request-flow"
+				doc:id="f40fde68-60a8-47fb-abe3-342d1c01ff7c"
+				processor="flow-ref">
 				<munit-tools:with-attributes>
-					<munit-tools:with-attribute whereValue="9aeef9c5-949a-4f52-9e71-1af8c90acdd4" attributeName="doc:id" />
+					<munit-tools:with-attribute
+						whereValue="9aeef9c5-949a-4f52-9e71-1af8c90acdd4"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 				<munit-tools:then-call flow="mock-flow-ref1" />
 			</munit-tools:mock-when>
-			<munit-tools:spy doc:name="Spy Save Pages Results in Accumulator Variable" doc:id="0c6e79ef-fecf-466f-b8e4-3c426e2031b6" processor="ee:transform">
+			<munit-tools:spy
+				doc:name="Spy Save Pages Results in Accumulator Variable"
+				doc:id="0c6e79ef-fecf-466f-b8e4-3c426e2031b6"
+				processor="ee:transform">
 				<munit-tools:with-attributes>
-					<munit-tools:with-attribute whereValue="e48e9af5-2861-4ad5-b1ea-3611fa0b31ad" attributeName="doc:id" />
+					<munit-tools:with-attribute
+						whereValue="e48e9af5-2861-4ad5-b1ea-3611fa0b31ad"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 				<munit-tools:before-call>
-					<munit-tools:assert doc:name="Assert variables" doc:id="3e14aefe-e28e-4b2a-a73f-a2f283f33fe5" message="The variables do not match">
+					<munit-tools:assert
+						doc:name="Assert variables"
+						doc:id="3e14aefe-e28e-4b2a-a73f-a2f283f33fe5"
+						message="The variables do not match">
 						<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharacterspaginationsubflowtest::spy_assert_variables
 ---
@@ -189,7 +355,10 @@ spy_assert_variables::main({payload: payload, attributes: attributes, vars: vars
 					</munit-tools:assert>
 				</munit-tools:before-call>
 				<munit-tools:after-call>
-					<munit-tools:assert doc:name="Assert variables" doc:id="b4fae438-5dfc-4d87-902f-e81a01766650" message="The variables do not match">
+					<munit-tools:assert
+						doc:name="Assert variables"
+						doc:id="b4fae438-5dfc-4d87-902f-e81a01766650"
+						message="The variables do not match">
 						<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharacterspaginationsubflowtest::spy_assert_variables1
 ---
@@ -197,12 +366,20 @@ spy_assert_variables1::main({payload: payload, attributes: attributes, vars: var
 					</munit-tools:assert>
 				</munit-tools:after-call>
 			</munit-tools:spy>
-			<munit-tools:spy doc:name="Spy Set Pagination Variables" doc:id="a91c6c9a-8706-4343-a089-ace1700699c9" processor="ee:transform">
+			<munit-tools:spy
+				doc:name="Spy Set Pagination Variables"
+				doc:id="a91c6c9a-8706-4343-a089-ace1700699c9"
+				processor="ee:transform">
 				<munit-tools:with-attributes>
-					<munit-tools:with-attribute whereValue="9b32dc76-1539-4edc-b8f0-fb10842809f6" attributeName="doc:id" />
+					<munit-tools:with-attribute
+						whereValue="9b32dc76-1539-4edc-b8f0-fb10842809f6"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 				<munit-tools:before-call>
-					<munit-tools:assert doc:name="Assert payload" doc:id="17e5903d-0a76-4172-96fc-2b728db637a2" message="The payload does not match">
+					<munit-tools:assert
+						doc:name="Assert payload"
+						doc:id="17e5903d-0a76-4172-96fc-2b728db637a2"
+						message="The payload does not match">
 						<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharacterspaginationsubflowtest::spy_assert_payload
 ---
@@ -210,7 +387,10 @@ spy_assert_payload::main({payload: payload, attributes: attributes, vars: vars})
 					</munit-tools:assert>
 				</munit-tools:before-call>
 				<munit-tools:after-call>
-					<munit-tools:assert doc:name="Assert variables" doc:id="ec2f3ccd-fd87-411f-a00f-9944eff13a8f" message="The variables do not match">
+					<munit-tools:assert
+						doc:name="Assert variables"
+						doc:id="ec2f3ccd-fd87-411f-a00f-9944eff13a8f"
+						message="The variables do not match">
 						<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharacterspaginationsubflowtest::spy_assert_variables2
 ---
@@ -218,12 +398,20 @@ spy_assert_variables2::main({payload: payload, attributes: attributes, vars: var
 					</munit-tools:assert>
 				</munit-tools:after-call>
 			</munit-tools:spy>
-			<munit-tools:spy doc:name="Spy Set httpRequest Variable" doc:id="328f16d6-0c15-49a7-b8cb-9014441314e9" processor="ee:transform">
+			<munit-tools:spy
+				doc:name="Spy Set httpRequest Variable"
+				doc:id="328f16d6-0c15-49a7-b8cb-9014441314e9"
+				processor="ee:transform">
 				<munit-tools:with-attributes>
-					<munit-tools:with-attribute whereValue="da5cf268-94a8-4f52-a919-19ce8ece20bd" attributeName="doc:id" />
+					<munit-tools:with-attribute
+						whereValue="da5cf268-94a8-4f52-a919-19ce8ece20bd"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 				<munit-tools:before-call>
-					<munit-tools:queue doc:name="Store actual value" doc:id="171e464b-6b6c-4ce7-8808-41a21ff86c96" queueName="Before Set httpRequest Variable 2">
+					<munit-tools:queue
+						doc:name="Store actual value"
+						doc:id="171e464b-6b6c-4ce7-8808-41a21ff86c96"
+						queueName="Before Set httpRequest Variable 2">
 						<munit-tools:value><![CDATA[#[{
   "message": message,
   "variables": vars
@@ -231,7 +419,10 @@ spy_assert_variables2::main({payload: payload, attributes: attributes, vars: var
 					</munit-tools:queue>
 				</munit-tools:before-call>
 				<munit-tools:after-call>
-					<munit-tools:queue doc:name="Store actual value" doc:id="813f83da-8b3e-44d1-a368-99d64eaeb608" queueName="After Set httpRequest Variable 2">
+					<munit-tools:queue
+						doc:name="Store actual value"
+						doc:id="813f83da-8b3e-44d1-a368-99d64eaeb608"
+						queueName="After Set httpRequest Variable 2">
 						<munit-tools:value><![CDATA[#[{
   "message": message,
   "variables": vars
@@ -239,51 +430,118 @@ spy_assert_variables2::main({payload: payload, attributes: attributes, vars: var
 					</munit-tools:queue>
 				</munit-tools:after-call>
 			</munit-tools:spy>
-			<munit:set-event doc:name="Set Input" doc:id="aa4747ce-f63b-4c2b-9a2d-ec8d68281c5c">
-				<munit:payload value="#[output application/json --- readUrl('classpath://getcharacterspaginationsubflowtest/set-event_payload.dwl')]" encoding="UTF-8" mediaType="application/json" />
-				<munit:attributes value="#[readUrl('classpath://getcharacterspaginationsubflowtest/set-event_attributes.dwl')]" />
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="aa4747ce-f63b-4c2b-9a2d-ec8d68281c5c">
+				<munit:payload
+					value="#[output application/json --- readUrl('classpath://getcharacterspaginationsubflowtest/set-event_payload.dwl')]"
+					encoding="UTF-8"
+					mediaType="application/json" />
+				<munit:attributes
+					value="#[readUrl('classpath://getcharacterspaginationsubflowtest/set-event_attributes.dwl')]" />
 				<munit:variables>
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://getcharacterspaginationsubflowtest/set-event_variable_.dwl')]" />
-					<munit:variable key="gender" value="#[output application/json --- readUrl('classpath://getcharacterspaginationsubflowtest/set-event_variable_1.dwl')]" encoding="UTF-8" mediaType="application/json" />
-					<munit:variable key="hypermediaSearch" value="#[output application/json --- readUrl('classpath://getcharacterspaginationsubflowtest/set-event_variable_2.dwl')]" encoding="UTF-8" mediaType="application/json" />
-					<munit:variable key="paginationAccumulator" value="#[output application/json --- readUrl('classpath://getcharacterspaginationsubflowtest/set-event_variable_3.dwl')]" encoding="UTF-8" mediaType="application/json" />
-					<munit:variable key="httpRequest" value="#[output application/json --- readUrl('classpath://getcharacterspaginationsubflowtest/set-event_variable_4.dwl')]" encoding="UTF-8" mediaType="application/json" />
+					<munit:variable
+						key="outboundHeaders"
+						value="#[readUrl('classpath://getcharacterspaginationsubflowtest/set-event_variable_.dwl')]" />
+					<munit:variable
+						key="gender"
+						value="#[output application/json --- readUrl('classpath://getcharacterspaginationsubflowtest/set-event_variable_1.dwl')]"
+						encoding="UTF-8"
+						mediaType="application/json" />
+					<munit:variable
+						key="hypermediaSearch"
+						value="#[output application/json --- readUrl('classpath://getcharacterspaginationsubflowtest/set-event_variable_2.dwl')]"
+						encoding="UTF-8"
+						mediaType="application/json" />
+					<munit:variable
+						key="paginationAccumulator"
+						value="#[output application/json --- readUrl('classpath://getcharacterspaginationsubflowtest/set-event_variable_3.dwl')]"
+						encoding="UTF-8"
+						mediaType="application/json" />
+					<munit:variable
+						key="httpRequest"
+						value="#[output application/json --- readUrl('classpath://getcharacterspaginationsubflowtest/set-event_variable_4.dwl')]"
+						encoding="UTF-8"
+						mediaType="application/json" />
 				</munit:variables>
 			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
-			<flow-ref doc:name="Flow-ref to get-characters-pagination-subflow" doc:id="85218e84-bd22-4c09-9820-cda93e936f4b" name="get-characters-pagination-subflow" />
+			<flow-ref
+				doc:name="Flow-ref to get-characters-pagination-subflow"
+				doc:id="85218e84-bd22-4c09-9820-cda93e936f4b"
+				name="get-characters-pagination-subflow" />
 		</munit:execution>
 		<munit:validation>
-			<munit-tools:assert doc:name="Assert payload" doc:id="43faceca-fc77-4bf8-a0be-7648fdb8aa73" message="The payload does not match">
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="43faceca-fc77-4bf8-a0be-7648fdb8aa73"
+				message="The payload does not match">
 				<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharacterspaginationsubflowtest::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 			</munit-tools:assert>
-			<munit-tools:verify-call doc:name="Verify Save Pages Results in Accumulator Variable" doc:id="17e2406a-744a-42f4-9900-5460a7c36d0f" processor="ee:transform" times="1">
+			<munit-tools:verify-call
+				doc:name="Verify Save Pages Results in Accumulator Variable"
+				doc:id="17e2406a-744a-42f4-9900-5460a7c36d0f"
+				processor="ee:transform"
+				times="1">
 				<munit-tools:with-attributes>
-					<munit-tools:with-attribute whereValue="e48e9af5-2861-4ad5-b1ea-3611fa0b31ad" attributeName="doc:id" />
+					<munit-tools:with-attribute
+						whereValue="e48e9af5-2861-4ad5-b1ea-3611fa0b31ad"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
-			<munit-tools:verify-call doc:name="Verify Set Pagination Variables" doc:id="0f3c9e3b-2132-4178-ac8e-c4fd5c2ac9ad" processor="ee:transform" times="1">
+			<munit-tools:verify-call
+				doc:name="Verify Set Pagination Variables"
+				doc:id="0f3c9e3b-2132-4178-ac8e-c4fd5c2ac9ad"
+				processor="ee:transform"
+				times="1">
 				<munit-tools:with-attributes>
-					<munit-tools:with-attribute whereValue="9b32dc76-1539-4edc-b8f0-fb10842809f6" attributeName="doc:id" />
+					<munit-tools:with-attribute
+						whereValue="9b32dc76-1539-4edc-b8f0-fb10842809f6"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
-			<munit-tools:assert-equals doc:name="Assert queues' sizes" doc:id="22acdf61-292f-4fd6-973b-b1652edc511e" actual="#[[&#10;  MunitTools::queueSize('Before Set httpRequest Variable 2'),&#10;  MunitTools::queueSize('After Set httpRequest Variable 2')&#10;]]" expected="#[[&#10;  8,&#10;  8&#10;]]" message="The queues' sizes do not match" />
-			<foreach doc:name="Assert before" doc:id="9781da4a-afb6-449c-b04f-fb26ac362455" collection="#[readUrl('classpath://getcharacterspaginationsubflowtest/spy_assert_before_collection.dwl')]">
-				<munit-tools:dequeue doc:name="Retrieve actual value" doc:id="a39417f3-a87a-4106-93af-66f2586dce0a" queueName="Before Set httpRequest Variable 2" target="actual" />
-				<munit-tools:assert doc:name="Assert variables" doc:id="aae20d35-489e-4ae1-b21f-0a0411b064e0" message="The variables do not match">
+			<munit-tools:assert-equals
+				doc:name="Assert queues' sizes"
+				doc:id="22acdf61-292f-4fd6-973b-b1652edc511e"
+				actual="#[[&#10;  MunitTools::queueSize('Before Set httpRequest Variable 2'),&#10;  MunitTools::queueSize('After Set httpRequest Variable 2')&#10;]]"
+				expected="#[[&#10;  8,&#10;  8&#10;]]"
+				message="The queues' sizes do not match" />
+			<foreach
+				doc:name="Assert before"
+				doc:id="9781da4a-afb6-449c-b04f-fb26ac362455"
+				collection="#[readUrl('classpath://getcharacterspaginationsubflowtest/spy_assert_before_collection.dwl')]">
+				<munit-tools:dequeue
+					doc:name="Retrieve actual value"
+					doc:id="a39417f3-a87a-4106-93af-66f2586dce0a"
+					queueName="Before Set httpRequest Variable 2"
+					target="actual" />
+				<munit-tools:assert
+					doc:name="Assert variables"
+					doc:id="aae20d35-489e-4ae1-b21f-0a0411b064e0"
+					message="The variables do not match">
 					<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharacterspaginationsubflowtest::spy_assert_variables3
 ---
 spy_assert_variables3::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 				</munit-tools:assert>
 			</foreach>
-			<foreach doc:name="Assert after" doc:id="4c166258-8715-48c5-aec3-6bd22368dd6a" collection="#[readUrl('classpath://getcharacterspaginationsubflowtest/spy_assert_after_collection.dwl')]">
-				<munit-tools:dequeue doc:name="Retrieve actual value" doc:id="cf77669f-dcba-4635-ae96-f1bfb153697e" queueName="After Set httpRequest Variable 2" target="actual" />
-				<munit-tools:assert doc:name="Assert variables" doc:id="a9568e3b-7234-4854-8e26-d3d66a1dbfdc" message="The variables do not match">
+			<foreach
+				doc:name="Assert after"
+				doc:id="4c166258-8715-48c5-aec3-6bd22368dd6a"
+				collection="#[readUrl('classpath://getcharacterspaginationsubflowtest/spy_assert_after_collection.dwl')]">
+				<munit-tools:dequeue
+					doc:name="Retrieve actual value"
+					doc:id="cf77669f-dcba-4635-ae96-f1bfb153697e"
+					queueName="After Set httpRequest Variable 2"
+					target="actual" />
+				<munit-tools:assert
+					doc:name="Assert variables"
+					doc:id="a9568e3b-7234-4854-8e26-d3d66a1dbfdc"
+					message="The variables do not match">
 					<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharacterspaginationsubflowtest::spy_assert_variables4
 ---
@@ -292,144 +550,297 @@ spy_assert_variables4::main({payload: payload, attributes: attributes, vars: var
 			</foreach>
 		</munit:validation>
 	</munit:test>
-	<flow name="mock-flow-ref" doc:id="061bfd58-4d5f-4878-a751-b14df4221501" >
-		<try doc:name="Try" doc:id="12b41ccb-bdb0-41cf-ae83-ec1841951524" >
-			<munit-tools:retrieve doc:name="Retrieve" doc:id="40a337e6-2f25-4fa5-91ae-ffef56886345" key="Mock common-http-request-flow"/>
-			<error-handler >
-				<on-error-continue enableNotifications="false" logException="false" doc:name="On Error Continue" doc:id="495b3546-9cfa-488e-8e5d-f589329baaa6" type="ANY">
-					<set-payload value="#[1]" doc:name="Set Payload" doc:id="0ca5fac8-c36c-4b9c-ba07-287a5c595ede" />
+	<flow
+		name="mock-flow-ref"
+		doc:id="061bfd58-4d5f-4878-a751-b14df4221501">
+		<try
+			doc:name="Try"
+			doc:id="12b41ccb-bdb0-41cf-ae83-ec1841951524">
+			<munit-tools:retrieve
+				doc:name="Retrieve"
+				doc:id="40a337e6-2f25-4fa5-91ae-ffef56886345"
+				key="Mock common-http-request-flow" />
+			<error-handler>
+				<on-error-continue
+					enableNotifications="false"
+					logException="false"
+					doc:name="On Error Continue"
+					doc:id="495b3546-9cfa-488e-8e5d-f589329baaa6"
+					type="ANY">
+					<set-payload
+						value="#[1]"
+						doc:name="Set Payload"
+						doc:id="0ca5fac8-c36c-4b9c-ba07-287a5c595ede" />
 				</on-error-continue>
 			</error-handler>
 		</try>
-		<munit-tools:store doc:name="Store" doc:id="9a13fbbb-22d5-42e7-b331-b15b05249fa8" key="Mock common-http-request-flow">
-			<munit-tools:value ><![CDATA[#[payload + 1]]]></munit-tools:value>
+		<munit-tools:store
+			doc:name="Store"
+			doc:id="9a13fbbb-22d5-42e7-b331-b15b05249fa8"
+			key="Mock common-http-request-flow">
+			<munit-tools:value><![CDATA[#[payload + 1]]]></munit-tools:value>
 		</munit-tools:store>
-		<choice doc:name="Choice" doc:id="f38e79ea-d422-424e-88ef-15ad2215a79a" >
+		<choice
+			doc:name="Choice"
+			doc:id="f38e79ea-d422-424e-88ef-15ad2215a79a">
 			<when expression="#[payload == 1]">
-				<munit:set-event doc:name="Set Event" doc:id="8e2a6321-1cf5-455a-8f21-dc932bdbd48a" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="8e2a6321-1cf5-455a-8f21-dc932bdbd48a" />
 			</when>
 			<when expression="#[payload == 2]">
-				<munit:set-event doc:name="Set Event" doc:id="bfe8c96f-2ae1-4a23-82ce-7cdb7735b931" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="bfe8c96f-2ae1-4a23-82ce-7cdb7735b931" />
 			</when>
 			<when expression="#[payload == 3]">
-				<munit:set-event doc:name="Set Event" doc:id="dedee3f5-9e15-4001-805f-6f120ac85cb0" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="dedee3f5-9e15-4001-805f-6f120ac85cb0" />
 			</when>
 			<when expression="#[payload == 4]">
-				<munit:set-event doc:name="Set Event" doc:id="16eb32f3-9d73-4a4d-a15e-0bc93ea0545e" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="16eb32f3-9d73-4a4d-a15e-0bc93ea0545e" />
 			</when>
 			<when expression="#[payload == 5]">
-				<munit:set-event doc:name="Set Event" doc:id="6fe6e2ea-2718-4400-b878-d9327ec12e74" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="6fe6e2ea-2718-4400-b878-d9327ec12e74" />
 			</when>
 			<when expression="#[payload == 6]">
-				<munit:set-event doc:name="Set Event" doc:id="33d05ed9-6c16-4825-8ad1-5ac6c7547aea" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="33d05ed9-6c16-4825-8ad1-5ac6c7547aea" />
 			</when>
 			<when expression="#[payload == 7]">
-				<munit:set-event doc:name="Set Event" doc:id="e04c210a-9e4e-4889-a346-fe2d2f710204" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="e04c210a-9e4e-4889-a346-fe2d2f710204" />
 			</when>
 			<when expression="#[payload == 8]">
-				<munit:set-event doc:name="Set Event" doc:id="197bb27e-ee66-4be4-b622-8e6c429cf5f8" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="197bb27e-ee66-4be4-b622-8e6c429cf5f8" />
 			</when>
-			<otherwise >
-				<munit-tools:fail doc:name="Fail" doc:id="352b4076-3f5c-4f9d-b5cf-208ad975ff1e" message="There are no more events to mock"/>
+			<otherwise>
+				<munit-tools:fail
+					doc:name="Fail"
+					doc:id="352b4076-3f5c-4f9d-b5cf-208ad975ff1e"
+					message="There are no more events to mock" />
 			</otherwise>
 		</choice>
 	</flow>
-	<flow name="mock-flow-ref1" doc:id="88207f3a-d9a1-4744-8ccb-0b292cce3843" >
-		<try doc:name="Try" doc:id="9a346fc4-cfcb-411e-96b3-13073481568a" >
-			<munit-tools:retrieve doc:name="Retrieve" doc:id="96afb8e9-250a-4863-9eb4-4bb922b8d4cd" key="Mock common-http-request-flow"/>
-			<error-handler >
-				<on-error-continue enableNotifications="false" logException="false" doc:name="On Error Continue" doc:id="afb6f225-c62d-46d2-ac6a-21857b294b2a" type="ANY">
-					<set-payload value="#[1]" doc:name="Set Payload" doc:id="6ecdf747-7e3a-4507-91d9-13aa36a0e94b" />
+	<flow
+		name="mock-flow-ref1"
+		doc:id="88207f3a-d9a1-4744-8ccb-0b292cce3843">
+		<try
+			doc:name="Try"
+			doc:id="9a346fc4-cfcb-411e-96b3-13073481568a">
+			<munit-tools:retrieve
+				doc:name="Retrieve"
+				doc:id="96afb8e9-250a-4863-9eb4-4bb922b8d4cd"
+				key="Mock common-http-request-flow" />
+			<error-handler>
+				<on-error-continue
+					enableNotifications="false"
+					logException="false"
+					doc:name="On Error Continue"
+					doc:id="afb6f225-c62d-46d2-ac6a-21857b294b2a"
+					type="ANY">
+					<set-payload
+						value="#[1]"
+						doc:name="Set Payload"
+						doc:id="6ecdf747-7e3a-4507-91d9-13aa36a0e94b" />
 				</on-error-continue>
 			</error-handler>
 		</try>
-		<munit-tools:store doc:name="Store" doc:id="22ded7b9-b43a-4b3b-b25f-9225526a9c29" key="Mock common-http-request-flow">
-			<munit-tools:value ><![CDATA[#[payload + 1]]]></munit-tools:value>
+		<munit-tools:store
+			doc:name="Store"
+			doc:id="22ded7b9-b43a-4b3b-b25f-9225526a9c29"
+			key="Mock common-http-request-flow">
+			<munit-tools:value><![CDATA[#[payload + 1]]]></munit-tools:value>
 		</munit-tools:store>
-		<choice doc:name="Choice" doc:id="012a8570-59b9-4eee-b5b3-268cc08139a4" >
+		<choice
+			doc:name="Choice"
+			doc:id="012a8570-59b9-4eee-b5b3-268cc08139a4">
 			<when expression="#[payload == 1]">
-				<munit:set-event doc:name="Set Event" doc:id="fd4c9b1c-8c0d-4775-a326-781ed550ccd0" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="fd4c9b1c-8c0d-4775-a326-781ed550ccd0" />
 			</when>
 			<when expression="#[payload == 2]">
-				<munit:set-event doc:name="Set Event" doc:id="fe305377-43c1-4aca-b64d-181a5ba4674d" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="fe305377-43c1-4aca-b64d-181a5ba4674d" />
 			</when>
 			<when expression="#[payload == 3]">
-				<munit:set-event doc:name="Set Event" doc:id="e8e1b8dd-0961-43a6-82e6-20cfd4637f57" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="e8e1b8dd-0961-43a6-82e6-20cfd4637f57" />
 			</when>
 			<when expression="#[payload == 4]">
-				<munit:set-event doc:name="Set Event" doc:id="e07a1657-e5b0-4110-9113-9d0aa3eb19ae" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="e07a1657-e5b0-4110-9113-9d0aa3eb19ae" />
 			</when>
 			<when expression="#[payload == 5]">
-				<munit:set-event doc:name="Set Event" doc:id="58712a1f-e453-4289-a853-e7095376f4be" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="58712a1f-e453-4289-a853-e7095376f4be" />
 			</when>
 			<when expression="#[payload == 6]">
-				<munit:set-event doc:name="Set Event" doc:id="973dd235-7f4d-4232-80d5-658b6a04d330" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="973dd235-7f4d-4232-80d5-658b6a04d330" />
 			</when>
 			<when expression="#[payload == 7]">
-				<munit:set-event doc:name="Set Event" doc:id="9d5b3a39-8566-45b4-8f4c-9be1d719aa6c" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="9d5b3a39-8566-45b4-8f4c-9be1d719aa6c" />
 			</when>
 			<when expression="#[payload == 8]">
-				<munit:set-event doc:name="Set Event" doc:id="91d3e266-30a3-4f5d-9e62-fa9cc875bbc3" />
+				<munit:set-event
+					doc:name="Set Event"
+					doc:id="91d3e266-30a3-4f5d-9e62-fa9cc875bbc3" />
 			</when>
-			<otherwise >
-				<munit-tools:fail doc:name="Fail" doc:id="cbcf5cf2-a0f5-4cf2-b579-16f3935f0773" message="There are no more events to mock"/>
+			<otherwise>
+				<munit-tools:fail
+					doc:name="Fail"
+					doc:id="cbcf5cf2-a0f5-4cf2-b579-16f3935f0773"
+					message="There are no more events to mock" />
 			</otherwise>
 		</choice>
 	</flow>
-	<munit:test name="get-characters-flow-ref-hypermedia-test" doc:id="8e30eb3c-6611-41a1-8f0f-3bca2dfad985" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock get-characters-hypermedia-flow" doc:id="76a8fd83-b53e-46f7-8833-8e77d2cd3310" processor="flow-ref">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="85d31d2b-26cb-42b5-bb17-dd8cb19986b7" attributeName="doc:id" />
+	<munit:test
+		name="get-characters-flow-ref-hypermedia-test"
+		doc:id="8e30eb3c-6611-41a1-8f0f-3bca2dfad985">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock get-characters-hypermedia-flow"
+				doc:id="76a8fd83-b53e-46f7-8833-8e77d2cd3310"
+				processor="flow-ref">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="85d31d2b-26cb-42b5-bb17-dd8cb19986b7"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_payload.dwl')]" mediaType='application/csv; separator=","' encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_payload.dwl')]"
+						mediaType='application/csv; separator=","'
+						encoding="UTF-8" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit-tools:mock-when doc:name="Mock get-characters-pagination-subflow" doc:id="ad183806-ec4c-4280-8302-9e8798dd13a2" processor="flow-ref">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="05a50248-24e0-4e38-8b3c-d053f3dd6cd6" attributeName="doc:id" />
+			<munit-tools:mock-when
+				doc:name="Mock get-characters-pagination-subflow"
+				doc:id="ad183806-ec4c-4280-8302-9e8798dd13a2"
+				processor="flow-ref">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="05a50248-24e0-4e38-8b3c-d053f3dd6cd6"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:variables >
-						<munit-tools:variable key="characters" value="#[readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_.dwl')]" />
-						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_1.dwl')]" />
-						<munit-tools:variable key="pages" value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_2.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="gender" value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_3.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="hypermediaSearch" value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_4.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="paginationAccumulator" value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_5.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="httpRequest" value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_6.dwl')]" mediaType="application/json" encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:variables>
+						<munit-tools:variable
+							key="characters"
+							value="#[readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_.dwl')]" />
+						<munit-tools:variable
+							key="outboundHeaders"
+							value="#[readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_1.dwl')]" />
+						<munit-tools:variable
+							key="pages"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_2.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="gender"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_3.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="hypermediaSearch"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_4.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="paginationAccumulator"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_5.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="httpRequest"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_6.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit-tools:mock-when doc:name="Mock get-characters-first-page-subfllow" doc:id="cfc5a2eb-34b3-4247-b83b-1fe8b8caf498" processor="flow-ref">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="327494ad-f5f8-4e1b-bd13-1a56a8483a4f" attributeName="doc:id" />
+			<munit-tools:mock-when
+				doc:name="Mock get-characters-first-page-subfllow"
+				doc:id="cfc5a2eb-34b3-4247-b83b-1fe8b8caf498"
+				processor="flow-ref">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="327494ad-f5f8-4e1b-bd13-1a56a8483a4f"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:variables >
-						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_7.dwl')]" />
-						<munit-tools:variable key="gender" value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_8.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="hypermediaSearch" value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_9.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="paginationAccumulator" value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_10.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="httpRequest" value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_11.dwl')]" mediaType="application/json" encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:variables>
+						<munit-tools:variable
+							key="outboundHeaders"
+							value="#[readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_7.dwl')]" />
+						<munit-tools:variable
+							key="gender"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_8.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="hypermediaSearch"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_9.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="paginationAccumulator"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_10.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
+						<munit-tools:variable
+							key="httpRequest"
+							value="#[output application/json --- readUrl('classpath://getcharactersflowrefhypermediatest/mock_variable_11.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="4c92f2d8-fed5-43e8-9ea4-e6f1f2269f44" >
-				<munit:payload value="#[readUrl('classpath://getcharactersflowrefhypermediatest/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://getcharactersflowrefhypermediatest/set-event_attributes.dwl')]" />
-				<munit:variables >
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://getcharactersflowrefhypermediatest/set-event_variable_.dwl')]" />
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="4c92f2d8-fed5-43e8-9ea4-e6f1f2269f44">
+				<munit:payload
+					value="#[readUrl('classpath://getcharactersflowrefhypermediatest/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://getcharactersflowrefhypermediatest/set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable
+						key="outboundHeaders"
+						value="#[readUrl('classpath://getcharactersflowrefhypermediatest/set-event_variable_.dwl')]" />
 				</munit:variables>
 			</munit:set-event>
 		</munit:behavior>
-		<munit:execution >
-			<flow-ref doc:name="Flow-ref to get-characters-flow" doc:id="71751e21-cd86-45f1-9f17-2ec78af113e3" name="get-characters-flow"/>
+		<munit:execution>
+			<flow-ref
+				doc:name="Flow-ref to get-characters-flow"
+				doc:id="71751e21-cd86-45f1-9f17-2ec78af113e3"
+				name="get-characters-flow" />
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="92c7a534-1f5f-4cdb-b33f-cb083fd14f01" message="The payload does not match">
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="92c7a534-1f5f-4cdb-b33f-cb083fd14f01"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharactersflowrefhypermediatest::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>

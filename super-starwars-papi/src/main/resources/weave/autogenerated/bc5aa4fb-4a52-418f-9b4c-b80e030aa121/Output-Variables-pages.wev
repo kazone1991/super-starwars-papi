@@ -1,4 +1,0 @@
-%dw 2.0
-
-type auto_bc5aa4fb_4a52_418f_9b4c_b80e030aa121_Output_Variables_pages = Array<Number>
-

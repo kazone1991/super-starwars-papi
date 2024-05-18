@@ -1,315 +1,580 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
-	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+<mule
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xsi:schemaLocation="
 		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
 		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
 	<munit:config name="super-starwars-papi-suite.xml" />
-	<munit:test name="get:\healthcheck:super-starwars-papi-config-test" doc:id="44b537bf-f832-4b2d-bbfa-8ec9f4ac23cb" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock get-healthcheck-implementation" doc:id="1e5626f3-9e45-4e68-9666-3fa99db73935" processor="flow-ref">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="7abbf6dc-3205-4ca7-9def-646078a569b3" attributeName="doc:id" />
+	<munit:test
+		name="get:\healthcheck:super-starwars-papi-config-test"
+		doc:id="44b537bf-f832-4b2d-bbfa-8ec9f4ac23cb">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock get-healthcheck-implementation"
+				doc:id="1e5626f3-9e45-4e68-9666-3fa99db73935"
+				processor="flow-ref">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="7abbf6dc-3205-4ca7-9def-646078a569b3"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/json --- readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/mock_payload.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					<munit-tools:attributes value="#[readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/mock_attributes.dwl')]" />
-					<munit-tools:variables >
-						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/mock_variable_.dwl')]" />
-						<munit-tools:variable key="httpRequest" value="#[output application/json --- readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/mock_variable_1.dwl')]" mediaType="application/json" encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/json --- readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/mock_payload.dwl')]"
+						mediaType="application/json"
+						encoding="UTF-8" />
+					<munit-tools:attributes
+						value="#[readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/mock_attributes.dwl')]" />
+					<munit-tools:variables>
+						<munit-tools:variable
+							key="outboundHeaders"
+							value="#[readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/mock_variable_.dwl')]" />
+						<munit-tools:variable
+							key="httpRequest"
+							value="#[output application/json --- readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/mock_variable_1.dwl')]"
+							mediaType="application/json"
+							encoding="UTF-8" />
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="107d140c-4ffd-4a2e-af2b-b0c2909a5c9c" >
-				<munit:payload value="#[readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/set-event_attributes.dwl')]" />
-				<munit:variables >
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/set-event_variable_.dwl')]" />
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="107d140c-4ffd-4a2e-af2b-b0c2909a5c9c">
+				<munit:payload
+					value="#[readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable
+						key="outboundHeaders"
+						value="#[readUrl('classpath://gethealthchecksuperstarwarspapiconfigtest/set-event_variable_.dwl')]" />
 				</munit:variables>
 			</munit:set-event>
 		</munit:behavior>
-		<munit:execution >
-			<flow-ref doc:name="Flow-ref to get:\healthcheck:super-starwars-papi-config" doc:id="c2254325-fb99-480f-888b-5f676b4c4161" name="get:\healthcheck:super-starwars-papi-config"/>
+		<munit:execution>
+			<flow-ref
+				doc:name="Flow-ref to get:\healthcheck:super-starwars-papi-config"
+				doc:id="c2254325-fb99-480f-888b-5f676b4c4161"
+				name="get:\healthcheck:super-starwars-papi-config" />
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="94e785fc-9195-4ed2-b7b1-3a3a9a6e4063" message="The payload does not match">
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="94e785fc-9195-4ed2-b7b1-3a3a9a6e4063"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import gethealthchecksuperstarwarspapiconfigtest::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 			</munit-tools:assert>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="get:\characters:super-starwars-papi-config-test" doc:id="4bb38922-fcc1-4b2b-9860-5cd0b4ececc4" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock get-characters-flow" doc:id="d4e93c8a-f35b-4b93-aadc-4d81cce49ea6" processor="flow-ref">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="4c693a9a-8dee-463e-a681-3afceecd0c8d" attributeName="doc:id" />
+	<munit:test
+		name="get:\characters:super-starwars-papi-config-test"
+		doc:id="4bb38922-fcc1-4b2b-9860-5cd0b4ececc4">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock get-characters-flow"
+				doc:id="d4e93c8a-f35b-4b93-aadc-4d81cce49ea6"
+				processor="flow-ref">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="4c693a9a-8dee-463e-a681-3afceecd0c8d"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://getcharacterssuperstarwarspapiconfigtest/mock_payload.dwl')]" mediaType='application/csv; separator=","' encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://getcharacterssuperstarwarspapiconfigtest/mock_payload.dwl')]"
+						mediaType='application/csv; separator=","'
+						encoding="UTF-8" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="8f91562e-5880-4e8c-a3f8-87a83945bb62" >
-				<munit:payload value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtest/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtest/set-event_attributes.dwl')]" />
-				<munit:variables >
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtest/set-event_variable_.dwl')]" />
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="8f91562e-5880-4e8c-a3f8-87a83945bb62">
+				<munit:payload
+					value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtest/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtest/set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable
+						key="outboundHeaders"
+						value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtest/set-event_variable_.dwl')]" />
 				</munit:variables>
 			</munit:set-event>
 		</munit:behavior>
-		<munit:execution >
-			<flow-ref doc:name="Flow-ref to get:\characters:super-starwars-papi-config" doc:id="898494ba-fc70-45d9-bfa0-cce95b948d08" name="get:\characters:super-starwars-papi-config"/>
+		<munit:execution>
+			<flow-ref
+				doc:name="Flow-ref to get:\characters:super-starwars-papi-config"
+				doc:id="898494ba-fc70-45d9-bfa0-cce95b948d08"
+				name="get:\characters:super-starwars-papi-config" />
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="52b19a78-2deb-410d-b519-1669aed9b2ee" message="The payload does not match">
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="52b19a78-2deb-410d-b519-1669aed9b2ee"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharacterssuperstarwarspapiconfigtest::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 			</munit-tools:assert>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="super-starwars-papi-main-test" doc:id="b7028bfe-e76d-475a-ae28-c8dcd32178a4" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock APIkit Router" doc:id="e51b66f7-a048-4341-a12a-5abfc4c11fac" processor="apikit:router">
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="b0992195-ab0a-4cbd-acd9-f466762a208c" attributeName="doc:id" />
+	<munit:test
+		name="super-starwars-papi-main-test"
+		doc:id="b7028bfe-e76d-475a-ae28-c8dcd32178a4">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock APIkit Router"
+				doc:id="e51b66f7-a048-4341-a12a-5abfc4c11fac"
+				processor="apikit:router">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="b0992195-ab0a-4cbd-acd9-f466762a208c"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://superstarwarspapimaintest/mock_payload.dwl')]" mediaType='application/csv; separator=","' encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://superstarwarspapimaintest/mock_payload.dwl')]"
+						mediaType='application/csv; separator=","'
+						encoding="UTF-8" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="5480450f-9604-4de8-9d05-efa4f66ed449" >
-				<munit:payload value="#[readUrl('classpath://superstarwarspapimaintest/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://superstarwarspapimaintest/set-event_attributes.dwl')]" />
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="5480450f-9604-4de8-9d05-efa4f66ed449">
+				<munit:payload
+					value="#[readUrl('classpath://superstarwarspapimaintest/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://superstarwarspapimaintest/set-event_attributes.dwl')]" />
 			</munit:set-event>
 		</munit:behavior>
-		<munit:execution >
-			<flow-ref doc:name="Flow-ref to super-starwars-papi-main" doc:id="34b3dce3-2cfb-4104-8ff3-771e9c8e225b" name="super-starwars-papi-main"/>
+		<munit:execution>
+			<flow-ref
+				doc:name="Flow-ref to super-starwars-papi-main"
+				doc:id="34b3dce3-2cfb-4104-8ff3-771e9c8e225b"
+				name="super-starwars-papi-main" />
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="84c96a4f-2361-4452-863e-351c35bdc663" message="The payload does not match">
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="84c96a4f-2361-4452-863e-351c35bdc663"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import superstarwarspapimaintest::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 			</munit-tools:assert>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="super-starwars-papi-main-test-400" doc:id="3ee94e51-bc4c-44e7-a134-b5c6e13f0404" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock APIkit Router" doc:id="2092d784-6275-4b15-b0ac-cf350c78a938" processor="apikit:router" >
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="b0992195-ab0a-4cbd-acd9-f466762a208c" attributeName="doc:id" />
+	<munit:test
+		name="super-starwars-papi-main-test-400"
+		doc:id="3ee94e51-bc4c-44e7-a134-b5c6e13f0404">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock APIkit Router"
+				doc:id="2092d784-6275-4b15-b0ac-cf350c78a938"
+				processor="apikit:router">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="b0992195-ab0a-4cbd-acd9-f466762a208c"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://superstarwarspapimaintest400/mock_payload.dwl')]" mediaType='application/csv; separator=","' encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://superstarwarspapimaintest400/mock_payload.dwl')]"
+						mediaType='application/csv; separator=","'
+						encoding="UTF-8" />
 					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="b015aad3-f4b6-498b-8871-3cf0ebdb42b2" >
-				<munit:payload value="#[readUrl('classpath://superstarwarspapimaintest400/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://superstarwarspapimaintest400/set-event_attributes.dwl')]" />
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="b015aad3-f4b6-498b-8871-3cf0ebdb42b2">
+				<munit:payload
+					value="#[readUrl('classpath://superstarwarspapimaintest400/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://superstarwarspapimaintest400/set-event_attributes.dwl')]" />
 			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
-			<try doc:name="Try" doc:id="cf2a31c4-e85b-49df-b0e4-288bfcea7dc8" >
-				<flow-ref doc:name="Flow-ref to super-starwars-papi-main" doc:id="2beb0271-2e9d-4814-ac51-9811f926369d" name="super-starwars-papi-main" />
-				<error-handler >
-					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="0eec044c-c60c-43c1-8404-4f129c355ff9" >
-						<logger level="INFO" doc:name="Logger" doc:id="1d5e31e4-2c07-4132-827f-a65a24c54f4c" message="TEST APIKIT 400 ERROR SCENARIO"/>
+			<try
+				doc:name="Try"
+				doc:id="cf2a31c4-e85b-49df-b0e4-288bfcea7dc8">
+				<flow-ref
+					doc:name="Flow-ref to super-starwars-papi-main"
+					doc:id="2beb0271-2e9d-4814-ac51-9811f926369d"
+					name="super-starwars-papi-main" />
+				<error-handler>
+					<on-error-continue
+						enableNotifications="true"
+						logException="true"
+						doc:name="On Error Continue"
+						doc:id="0eec044c-c60c-43c1-8404-4f129c355ff9">
+						<logger
+							level="INFO"
+							doc:name="Logger"
+							doc:id="1d5e31e4-2c07-4132-827f-a65a24c54f4c"
+							message="TEST APIKIT 400 ERROR SCENARIO" />
 					</on-error-continue>
 				</error-handler>
 			</try>
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="02f97754-4dee-46ae-afc5-f60561f32bd7" message="The payload does not match" >
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="02f97754-4dee-46ae-afc5-f60561f32bd7"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import superstarwarspapimaintest400::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 			</munit-tools:assert>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="super-starwars-papi-main-test-404" doc:id="f59d2415-4f66-47b7-a111-e181a1326dd1" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock APIkit Router" doc:id="9e2d04e7-19d1-477f-a1df-02e6aa87bea8" processor="apikit:router" >
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="b0992195-ab0a-4cbd-acd9-f466762a208c" attributeName="doc:id" />
+	<munit:test
+		name="super-starwars-papi-main-test-404"
+		doc:id="f59d2415-4f66-47b7-a111-e181a1326dd1">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock APIkit Router"
+				doc:id="9e2d04e7-19d1-477f-a1df-02e6aa87bea8"
+				processor="apikit:router">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="b0992195-ab0a-4cbd-acd9-f466762a208c"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://superstarwarspapimaintest404/mock_payload.dwl')]" mediaType='application/csv; separator=","' encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://superstarwarspapimaintest404/mock_payload.dwl')]"
+						mediaType='application/csv; separator=","'
+						encoding="UTF-8" />
 					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="f58d739e-bc25-4887-83a8-56740e0c731d" >
-				<munit:payload value="#[readUrl('classpath://superstarwarspapimaintest404/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://superstarwarspapimaintest404/set-event_attributes.dwl')]" />
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="f58d739e-bc25-4887-83a8-56740e0c731d">
+				<munit:payload
+					value="#[readUrl('classpath://superstarwarspapimaintest404/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://superstarwarspapimaintest404/set-event_attributes.dwl')]" />
 			</munit:set-event>
 		</munit:behavior>
-		<munit:execution >
-			<try doc:name="Try" doc:id="5a2beeb5-4187-41b0-88fc-c98257db9169" >
-				<flow-ref doc:name="Flow-ref to super-starwars-papi-main" doc:id="29f5ee9e-c793-4c4c-8305-54277077bdec" name="super-starwars-papi-main" />
-				<error-handler >
-					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="aad270fa-c2af-4584-9082-f71218154f4d" >
-						<logger level="INFO" doc:name="Logger" doc:id="b2785720-8c39-44aa-a6eb-5c2606ae3289" message="TEST APIKIT 404 ERROR SCENARIO" />
+		<munit:execution>
+			<try
+				doc:name="Try"
+				doc:id="5a2beeb5-4187-41b0-88fc-c98257db9169">
+				<flow-ref
+					doc:name="Flow-ref to super-starwars-papi-main"
+					doc:id="29f5ee9e-c793-4c4c-8305-54277077bdec"
+					name="super-starwars-papi-main" />
+				<error-handler>
+					<on-error-continue
+						enableNotifications="true"
+						logException="true"
+						doc:name="On Error Continue"
+						doc:id="aad270fa-c2af-4584-9082-f71218154f4d">
+						<logger
+							level="INFO"
+							doc:name="Logger"
+							doc:id="b2785720-8c39-44aa-a6eb-5c2606ae3289"
+							message="TEST APIKIT 404 ERROR SCENARIO" />
 					</on-error-continue>
 				</error-handler>
 			</try>
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="b11f7e8a-cd57-445d-a4cd-0debcc628f81" message="The payload does not match" >
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="b11f7e8a-cd57-445d-a4cd-0debcc628f81"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import superstarwarspapimaintest404::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 			</munit-tools:assert>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="super-starwars-papi-main-test-500" doc:id="22a2c9b0-d681-4d4d-96c5-97b939323a5b" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock APIkit Router" doc:id="23173876-a61d-4d52-b2d0-8c8bf95b976c" processor="apikit:router" >
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="b0992195-ab0a-4cbd-acd9-f466762a208c" attributeName="doc:id" />
+	<munit:test
+		name="super-starwars-papi-main-test-500"
+		doc:id="22a2c9b0-d681-4d4d-96c5-97b939323a5b">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock APIkit Router"
+				doc:id="23173876-a61d-4d52-b2d0-8c8bf95b976c"
+				processor="apikit:router">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="b0992195-ab0a-4cbd-acd9-f466762a208c"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://superstarwarspapimaintest500/mock_payload.dwl')]" mediaType='application/csv; separator=","' encoding="UTF-8" />
-					<munit-tools:error typeId="APIKIT:METHOD_NOT_ALLOWED" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://superstarwarspapimaintest500/mock_payload.dwl')]"
+						mediaType='application/csv; separator=","'
+						encoding="UTF-8" />
+					<munit-tools:error
+						typeId="APIKIT:METHOD_NOT_ALLOWED" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="787b05a7-227c-4590-b126-1911c5386574" >
-				<munit:payload value="#[readUrl('classpath://superstarwarspapimaintest500/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://superstarwarspapimaintest500/set-event_attributes.dwl')]" />
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="787b05a7-227c-4590-b126-1911c5386574">
+				<munit:payload
+					value="#[readUrl('classpath://superstarwarspapimaintest500/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://superstarwarspapimaintest500/set-event_attributes.dwl')]" />
 			</munit:set-event>
 		</munit:behavior>
-		<munit:execution >
-			<try doc:name="Try" doc:id="df975bfc-2a99-445c-9daa-285ae53e9729" >
-				<flow-ref doc:name="Flow-ref to super-starwars-papi-main" doc:id="115a166f-744c-4d86-b990-995443702605" name="super-starwars-papi-main" />
-				<error-handler >
-					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="8ef1110f-ea27-4793-b23e-21383ba4ff6b" >
-						<logger level="INFO" doc:name="Logger" doc:id="4d93a4d2-f078-48a3-bbdf-10efdc27b581" message="TEST APIKIT 500 ERROR SCENARIO" />
+		<munit:execution>
+			<try
+				doc:name="Try"
+				doc:id="df975bfc-2a99-445c-9daa-285ae53e9729">
+				<flow-ref
+					doc:name="Flow-ref to super-starwars-papi-main"
+					doc:id="115a166f-744c-4d86-b990-995443702605"
+					name="super-starwars-papi-main" />
+				<error-handler>
+					<on-error-continue
+						enableNotifications="true"
+						logException="true"
+						doc:name="On Error Continue"
+						doc:id="8ef1110f-ea27-4793-b23e-21383ba4ff6b">
+						<logger
+							level="INFO"
+							doc:name="Logger"
+							doc:id="4d93a4d2-f078-48a3-bbdf-10efdc27b581"
+							message="TEST APIKIT 500 ERROR SCENARIO" />
 					</on-error-continue>
 				</error-handler>
 			</try>
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="cec22b96-9392-4309-bbc4-e4ccae4f9af5" message="The payload does not match" >
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="cec22b96-9392-4309-bbc4-e4ccae4f9af5"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import superstarwarspapimaintest500::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 			</munit-tools:assert>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="get:\characters:super-starwars-papi-config-test-http-400" doc:id="e43694d9-677b-4e87-9f05-1ffa9fd5ecfd" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock get-characters-flow" doc:id="57f57f86-16cf-4308-a1b1-04ab5f5443c9" processor="flow-ref" >
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="4c693a9a-8dee-463e-a681-3afceecd0c8d" attributeName="doc:id" />
+	<munit:test
+		name="get:\characters:super-starwars-papi-config-test-http-400"
+		doc:id="e43694d9-677b-4e87-9f05-1ffa9fd5ecfd">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock get-characters-flow"
+				doc:id="57f57f86-16cf-4308-a1b1-04ab5f5443c9"
+				processor="flow-ref">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="4c693a9a-8dee-463e-a681-3afceecd0c8d"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp400/mock_payload.dwl')]" mediaType='application/csv; separator=","' encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp400/mock_payload.dwl')]"
+						mediaType='application/csv; separator=","'
+						encoding="UTF-8" />
 					<munit-tools:error typeId="HTTP:BAD_REQUEST" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="bb39b1ee-7ae8-4e5e-8771-60648b8236d0" >
-				<munit:payload value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp400/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp400/set-event_attributes.dwl')]" />
-				<munit:variables >
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="bb39b1ee-7ae8-4e5e-8771-60648b8236d0">
+				<munit:payload
+					value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp400/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp400/set-event_attributes.dwl')]" />
+				<munit:variables>
 				</munit:variables>
 			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
-			<try doc:name="Try" doc:id="97547abd-d9f5-44b3-a72b-f6c45d6f77db" >
-				<flow-ref doc:name="Flow-ref to get:\characters:super-starwars-papi-config" doc:id="c0ccb72b-0513-4857-8de4-f3cc5b83153d" name="get:\characters:super-starwars-papi-config" />
-				<error-handler >
-					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="dcac4b68-33b6-4083-aef0-bd87ce19fb06" >
-						<logger level="INFO" doc:name="Logger" doc:id="c61c26b0-92a2-4ae1-9ce1-c679465757cb" message="TEST HTTP 400 ERROR SCENARIO"/>
+			<try
+				doc:name="Try"
+				doc:id="97547abd-d9f5-44b3-a72b-f6c45d6f77db">
+				<flow-ref
+					doc:name="Flow-ref to get:\characters:super-starwars-papi-config"
+					doc:id="c0ccb72b-0513-4857-8de4-f3cc5b83153d"
+					name="get:\characters:super-starwars-papi-config" />
+				<error-handler>
+					<on-error-continue
+						enableNotifications="true"
+						logException="true"
+						doc:name="On Error Continue"
+						doc:id="dcac4b68-33b6-4083-aef0-bd87ce19fb06">
+						<logger
+							level="INFO"
+							doc:name="Logger"
+							doc:id="c61c26b0-92a2-4ae1-9ce1-c679465757cb"
+							message="TEST HTTP 400 ERROR SCENARIO" />
 					</on-error-continue>
 				</error-handler>
 			</try>
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="4b5c15af-e5d0-4122-8ecc-b843a4b33a9a" message="The payload does not match" >
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="4b5c15af-e5d0-4122-8ecc-b843a4b33a9a"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharacterssuperstarwarspapiconfigtesthttp400::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 			</munit-tools:assert>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="get:\characters:super-starwars-papi-config-test-http-404" doc:id="9c30475b-c0bd-43ad-a8ee-393446a937d5" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock get-characters-flow" doc:id="94fcc60d-029e-4962-8175-2d3277b28559" processor="flow-ref" >
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="4c693a9a-8dee-463e-a681-3afceecd0c8d" attributeName="doc:id" />
+	<munit:test
+		name="get:\characters:super-starwars-papi-config-test-http-404"
+		doc:id="9c30475b-c0bd-43ad-a8ee-393446a937d5">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock get-characters-flow"
+				doc:id="94fcc60d-029e-4962-8175-2d3277b28559"
+				processor="flow-ref">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="4c693a9a-8dee-463e-a681-3afceecd0c8d"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp404/mock_payload.dwl')]" mediaType='application/csv; separator=","' encoding="UTF-8" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp404/mock_payload.dwl')]"
+						mediaType='application/csv; separator=","'
+						encoding="UTF-8" />
 					<munit-tools:error typeId="HTTP:NOT_FOUND" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="886611f4-dfbf-460e-8211-4ebd6e97d945" >
-				<munit:payload value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp404/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp404/set-event_attributes.dwl')]" />
-				<munit:variables >
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="886611f4-dfbf-460e-8211-4ebd6e97d945">
+				<munit:payload
+					value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp404/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp404/set-event_attributes.dwl')]" />
+				<munit:variables>
 				</munit:variables>
 			</munit:set-event>
 		</munit:behavior>
-		<munit:execution >
-			<try doc:name="Try" doc:id="0b8192b8-d4a3-4470-b2bb-93a2817be5b9" >
-				<flow-ref doc:name="Flow-ref to get:\characters:super-starwars-papi-config" doc:id="47721906-0561-4ff4-acd3-63e9b7b1b165" name="get:\characters:super-starwars-papi-config" />
-				<error-handler >
-					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="878ed238-8bf3-4f40-808f-106208b8a102" >
-						<logger level="INFO" doc:name="Logger" doc:id="10c3099d-b56c-455e-a8b1-d0987f44c39a" message="TEST HTTP 404 ERROR SCENARIO" />
+		<munit:execution>
+			<try
+				doc:name="Try"
+				doc:id="0b8192b8-d4a3-4470-b2bb-93a2817be5b9">
+				<flow-ref
+					doc:name="Flow-ref to get:\characters:super-starwars-papi-config"
+					doc:id="47721906-0561-4ff4-acd3-63e9b7b1b165"
+					name="get:\characters:super-starwars-papi-config" />
+				<error-handler>
+					<on-error-continue
+						enableNotifications="true"
+						logException="true"
+						doc:name="On Error Continue"
+						doc:id="878ed238-8bf3-4f40-808f-106208b8a102">
+						<logger
+							level="INFO"
+							doc:name="Logger"
+							doc:id="10c3099d-b56c-455e-a8b1-d0987f44c39a"
+							message="TEST HTTP 404 ERROR SCENARIO" />
 					</on-error-continue>
 				</error-handler>
 			</try>
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="fb673dfc-791b-4c1b-998d-d898abf42b2c" message="The payload does not match" >
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="fb673dfc-791b-4c1b-998d-d898abf42b2c"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharacterssuperstarwarspapiconfigtesthttp404::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
 			</munit-tools:assert>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="get:\characters:super-starwars-papi-config-test-http-500" doc:id="7fa8a0b1-8044-4e8e-9da6-c3a74381e129" >
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock get-characters-flow" doc:id="d4a53984-9da6-436b-bb89-8f034598eb56" processor="flow-ref" >
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="4c693a9a-8dee-463e-a681-3afceecd0c8d" attributeName="doc:id" />
+	<munit:test
+		name="get:\characters:super-starwars-papi-config-test-http-500"
+		doc:id="7fa8a0b1-8044-4e8e-9da6-c3a74381e129">
+		<munit:behavior>
+			<munit-tools:mock-when
+				doc:name="Mock get-characters-flow"
+				doc:id="d4a53984-9da6-436b-bb89-8f034598eb56"
+				processor="flow-ref">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute
+						whereValue="4c693a9a-8dee-463e-a681-3afceecd0c8d"
+						attributeName="doc:id" />
 				</munit-tools:with-attributes>
-				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp500/mock_payload.dwl')]" mediaType='application/csv; separator=","' encoding="UTF-8" />
-					<munit-tools:error typeId="HTTP:INTERNAL_SERVER_ERROR" />
+				<munit-tools:then-return>
+					<munit-tools:payload
+						value="#[output application/csv separator=&quot;,&quot; --- readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp500/mock_payload.dwl')]"
+						mediaType='application/csv; separator=","'
+						encoding="UTF-8" />
+					<munit-tools:error
+						typeId="HTTP:INTERNAL_SERVER_ERROR" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="9dbd1b4d-c042-4e9c-9d7f-dd02cfc0a94c" >
-				<munit:payload value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp500/set-event_payload.dwl')]" encoding="UTF-8" />
-				<munit:attributes value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp500/set-event_attributes.dwl')]" />
-				<munit:variables >
+			<munit:set-event
+				doc:name="Set Input"
+				doc:id="9dbd1b4d-c042-4e9c-9d7f-dd02cfc0a94c">
+				<munit:payload
+					value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp500/set-event_payload.dwl')]"
+					encoding="UTF-8" />
+				<munit:attributes
+					value="#[readUrl('classpath://getcharacterssuperstarwarspapiconfigtesthttp500/set-event_attributes.dwl')]" />
+				<munit:variables>
 				</munit:variables>
 			</munit:set-event>
 		</munit:behavior>
-		<munit:execution >
-			<try doc:name="Try" doc:id="c0ff9628-2320-4e01-b248-e28c1d1732ba" >
-				<flow-ref doc:name="Flow-ref to get:\characters:super-starwars-papi-config" doc:id="dd30fcc9-322c-4040-8a96-160c0006837a" name="get:\characters:super-starwars-papi-config" />
-				<error-handler >
-					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="0db4341a-ee42-4b82-8d15-a11f9c04932b" >
-						<logger level="INFO" doc:name="Logger" doc:id="0834dfce-d783-4512-90d5-b0adb428d898" message="TEST HTTP 500 ERROR SCENARIO" />
+		<munit:execution>
+			<try
+				doc:name="Try"
+				doc:id="c0ff9628-2320-4e01-b248-e28c1d1732ba">
+				<flow-ref
+					doc:name="Flow-ref to get:\characters:super-starwars-papi-config"
+					doc:id="dd30fcc9-322c-4040-8a96-160c0006837a"
+					name="get:\characters:super-starwars-papi-config" />
+				<error-handler>
+					<on-error-continue
+						enableNotifications="true"
+						logException="true"
+						doc:name="On Error Continue"
+						doc:id="0db4341a-ee42-4b82-8d15-a11f9c04932b">
+						<logger
+							level="INFO"
+							doc:name="Logger"
+							doc:id="0834dfce-d783-4512-90d5-b0adb428d898"
+							message="TEST HTTP 500 ERROR SCENARIO" />
 					</on-error-continue>
 				</error-handler>
 			</try>
 		</munit:execution>
-		<munit:validation >
-			<munit-tools:assert doc:name="Assert payload" doc:id="5912ea4d-17d6-4a5a-8612-4bd17e228172" message="The payload does not match" >
-				<munit-tools:that ><![CDATA[#[%dw 2.0
+		<munit:validation>
+			<munit-tools:assert
+				doc:name="Assert payload"
+				doc:id="5912ea4d-17d6-4a5a-8612-4bd17e228172"
+				message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
 import getcharacterssuperstarwarspapiconfigtesthttp500::assert_expression_payload
 ---
 assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>

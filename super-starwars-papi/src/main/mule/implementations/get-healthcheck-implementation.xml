@@ -50,7 +50,9 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 								resource="dw/implementations/healthcheck/setHealthCheckDownResponse.dwl" />
 						</ee:message>
 						<ee:variables>
-							<ee:set-variable variableName="httpStatus"><![CDATA[500]]></ee:set-variable>
+							<ee:set-variable
+								resource="setHealthCheckDownHttpStatus.dwl"
+								variableName="httpStatus" />
 						</ee:variables>
 					</ee:transform>
 				</on-error-continue>

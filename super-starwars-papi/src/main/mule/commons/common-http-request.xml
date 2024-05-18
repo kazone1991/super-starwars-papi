@@ -16,10 +16,12 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 			doc:id="d8f63a1f-983b-469d-bc0f-31433c264137"
 			config-ref="commonHTTPRequestConfiguration"
 			path="#[vars.httpRequest.path]"
-			sendCorrelationId="AUTO" outputMimeType="application/json" responseTimeout="#[vars.httpRequest.timeout]">
+			sendCorrelationId="AUTO"
+			outputMimeType="application/json"
+			responseTimeout="#[vars.httpRequest.timeout]">
 			<http:headers><![CDATA[#[vars.httpRequest.header default {}]]]></http:headers>
 			<http:uri-params><![CDATA[#[vars.httpRequest.uri default {}]]]></http:uri-params>
-			<http:query-params ><![CDATA[#[vars.httpRequest.query default {}]]]></http:query-params>
+			<http:query-params><![CDATA[#[vars.httpRequest.query default {}]]]></http:query-params>
 		</http:request>
 	</flow>
 </mule>

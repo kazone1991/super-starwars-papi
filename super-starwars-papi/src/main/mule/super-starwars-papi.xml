@@ -21,7 +21,9 @@
 				<http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
 			</http:error-response>
 		</http:listener>
-		<apikit:router config-ref="super-starwars-papi-config" doc:id="b0992195-ab0a-4cbd-acd9-f466762a208c"/>
+		<apikit:router
+			config-ref="super-starwars-papi-config"
+			doc:id="b0992195-ab0a-4cbd-acd9-f466762a208c" />
 		<error-handler ref="common-error-handler" />
 	</flow>
 	<flow name="get:\characters:super-starwars-papi-config">
@@ -31,6 +33,9 @@
 			name="get-characters-flow" />
 	</flow>
 	<flow name="get:\healthcheck:super-starwars-papi-config">
-		<flow-ref doc:name="get-healthcheck-implementation" doc:id="7abbf6dc-3205-4ca7-9def-646078a569b3" name="get-healthcheck-implementation"/>
+		<flow-ref
+			doc:name="get-healthcheck-implementation"
+			doc:id="7abbf6dc-3205-4ca7-9def-646078a569b3"
+			name="get-healthcheck-implementation" />
 	</flow>
 </mule>

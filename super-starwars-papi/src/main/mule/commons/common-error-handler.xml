@@ -1,62 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+<mule
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-	<error-handler name="common-error-handler" doc:id="c7d80080-3dbc-4648-9beb-6a033541eedf" >
-		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="04315194-a9a6-4e79-af9d-9d125a01cf9f" type="APIKIT:BAD_REQUEST" >
-			<ee:transform doc:name="Transform Message" doc:id="8ead5ecd-445f-4a0c-9265-0c966dd5e883" >
-				<ee:message >
-					<ee:set-payload resource="dw/commons/apikit400ErrorPayload.dwl" />
+	<error-handler
+		name="common-error-handler"
+		doc:id="c7d80080-3dbc-4648-9beb-6a033541eedf">
+		<on-error-propagate
+			enableNotifications="true"
+			logException="true"
+			doc:name="On Error Propagate"
+			doc:id="04315194-a9a6-4e79-af9d-9d125a01cf9f"
+			type="APIKIT:BAD_REQUEST">
+			<ee:transform
+				doc:name="Transform Message"
+				doc:id="8ead5ecd-445f-4a0c-9265-0c966dd5e883">
+				<ee:message>
+					<ee:set-payload
+						resource="dw/commons/apikit400ErrorPayload.dwl" />
 				</ee:message>
-				<ee:variables >
-					<ee:set-variable variableName="httpStatus" ><![CDATA[400
-					]]></ee:set-variable>
+				<ee:variables>
+					<ee:set-variable
+						resource="dw/commons/apikit400HttpStatus.dwl"
+						variableName="httpStatus" />
 				</ee:variables>
 			</ee:transform>
 		</on-error-propagate>
-		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate1" doc:id="bd416432-c805-4005-bbe9-3eaccf97aa40" type="APIKIT:NOT_FOUND" >
-			<ee:transform doc:name="Transform Message" doc:id="d5116a3a-15d2-42d8-9175-98029668ea24" >
-				<ee:message >
-					<ee:set-payload resource="dw/commons/apikit404ErrorPayload.dwl" />
+		<on-error-propagate
+			enableNotifications="true"
+			logException="true"
+			doc:name="On Error Propagate1"
+			doc:id="bd416432-c805-4005-bbe9-3eaccf97aa40"
+			type="APIKIT:NOT_FOUND">
+			<ee:transform
+				doc:name="Transform Message"
+				doc:id="d5116a3a-15d2-42d8-9175-98029668ea24">
+				<ee:message>
+					<ee:set-payload
+						resource="dw/commons/apikit404ErrorPayload.dwl" />
 				</ee:message>
-				<ee:variables >
-					<ee:set-variable variableName="httpStatus" ><![CDATA[404
-					]]></ee:set-variable>
+				<ee:variables>
+					<ee:set-variable
+						resource="dw/commons/apikit404HttpStatus.dwl"
+						variableName="httpStatus" />
 				</ee:variables>
 			</ee:transform>
 		</on-error-propagate>
-		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate5" doc:id="b2955952-34ba-44af-937c-e31badb8d90a" type="HTTP:NOT_FOUND" >
-			<ee:transform doc:name="Transform Message" doc:id="36da9917-e9c0-4b31-9082-78cb3991aa61" >
-				<ee:message >
-					<ee:set-payload resource="dw/commons/http400ErrorPayload.dwl" />
+		<on-error-propagate
+			enableNotifications="true"
+			logException="true"
+			doc:name="On Error Propagate5"
+			doc:id="b2955952-34ba-44af-937c-e31badb8d90a"
+			type="HTTP:NOT_FOUND">
+			<ee:transform
+				doc:name="Transform Message"
+				doc:id="36da9917-e9c0-4b31-9082-78cb3991aa61">
+				<ee:message>
+					<ee:set-payload
+						resource="dw/commons/http400ErrorPayload.dwl" />
 				</ee:message>
-				<ee:variables >
-					<ee:set-variable variableName="httpStatus" ><![CDATA[404
-					]]></ee:set-variable>
+				<ee:variables>
+					<ee:set-variable
+						resource="dw/commons/404HttpStatus.dwl"
+						variableName="httpStatus" />
 				</ee:variables>
 			</ee:transform>
 		</on-error-propagate>
-		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate2" doc:id="de8a8bc8-168e-441a-be1c-9d016bc92943" type="HTTP:BAD_REQUEST" >
-			<ee:transform doc:name="Transform Message" doc:id="60e1b84c-c7bb-4133-89d6-a1c04395ef59" >
-				<ee:message >
-					<ee:set-payload resource="dw/commons/http404ErrorPayload.dwl" />
+		<on-error-propagate
+			enableNotifications="true"
+			logException="true"
+			doc:name="On Error Propagate2"
+			doc:id="de8a8bc8-168e-441a-be1c-9d016bc92943"
+			type="HTTP:BAD_REQUEST">
+			<ee:transform
+				doc:name="Transform Message"
+				doc:id="60e1b84c-c7bb-4133-89d6-a1c04395ef59">
+				<ee:message>
+					<ee:set-payload
+						resource="dw/commons/http404ErrorPayload.dwl" />
 				</ee:message>
-				<ee:variables >
-					<ee:set-variable variableName="httpStatus" ><![CDATA[400
-					]]></ee:set-variable>
+				<ee:variables>
+					<ee:set-variable
+						resource="dw/commons/400HttpStatus.dwl"
+						variableName="httpStatus" />
 				</ee:variables>
 			</ee:transform>
 		</on-error-propagate>
-		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate3" doc:id="96c8563b-4366-4534-b960-1ce8b6c69115" type="ANY" >
-			<ee:transform doc:name="Transform Message" doc:id="ab5fd57d-3298-4014-83bd-54a52103dbe7" >
-				<ee:message >
-					<ee:set-payload resource="dw/commons/general500ErrorPayload.dwl" />
+		<on-error-propagate
+			enableNotifications="true"
+			logException="true"
+			doc:name="On Error Propagate3"
+			doc:id="96c8563b-4366-4534-b960-1ce8b6c69115"
+			type="ANY">
+			<ee:transform
+				doc:name="Transform Message"
+				doc:id="ab5fd57d-3298-4014-83bd-54a52103dbe7">
+				<ee:message>
+					<ee:set-payload
+						resource="dw/commons/general500ErrorPayload.dwl" />
 				</ee:message>
-				<ee:variables >
-					<ee:set-variable variableName="httpStatus" ><![CDATA[500
-					]]></ee:set-variable>
+				<ee:variables>
+					<ee:set-variable
+						resource="dw/commons/500HttpStatus.dwl"
+						variableName="httpStatus" />
 				</ee:variables>
 			</ee:transform>
 		</on-error-propagate>
