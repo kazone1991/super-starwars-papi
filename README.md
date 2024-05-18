@@ -33,7 +33,7 @@ El API de Proceso cuenta con dos flujos que he denominado Basic Search y Hyperme
 - ***Hypermedia Search*** realiza el mismo proceso de consumo de páginacion para obtener la información,
   así como los filtros basados en el generó. Además, se implemento la búsqueda de información
   complementaria para cada registro a traves del consumo de URLs que se proveen en las respuestas
-  obtenidas de la páginacion.
+  obtenidas de la páginacion, obteniendo una respuesta mas completa en formato CSV.
 
 Además se realizó una implementación básica de ***Health Check*** para conocer el estado en el que se encuentra el API.
 
