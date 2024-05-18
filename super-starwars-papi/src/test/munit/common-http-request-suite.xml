@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="common-http-request-suite.xml" />
+	<munit:test name="common-http-request-flow-test" doc:id="14b77aaf-5eea-4c25-9f2e-adc934457539" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Common HTTP Request" doc:id="4acd8d62-3fc1-4435-a0e4-3826404826ed" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="d8f63a1f-983b-469d-bc0f-31433c264137" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json --- readUrl('classpath://commonhttprequestflowtest/mock_payload.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					<munit-tools:attributes value="#[readUrl('classpath://commonhttprequestflowtest/mock_attributes.dwl')]" />
+					<munit-tools:variables >
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://commonhttprequestflowtest/mock_variable_.dwl')]" />
+						<munit-tools:variable key="gender" value="#[output application/json --- readUrl('classpath://commonhttprequestflowtest/mock_variable_1.dwl')]" mediaType="application/json" encoding="UTF-8" />
+						<munit-tools:variable key="paginationAccumulator" value="#[output application/json --- readUrl('classpath://commonhttprequestflowtest/mock_variable_2.dwl')]" mediaType="application/json" encoding="UTF-8" />
+						<munit-tools:variable key="httpRequest" value="#[output application/json --- readUrl('classpath://commonhttprequestflowtest/mock_variable_3.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="28e51ed3-3119-40cf-a650-c931ad923b2a" >
+				<munit:payload value="#[readUrl('classpath://commonhttprequestflowtest/set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://commonhttprequestflowtest/set-event_attributes.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://commonhttprequestflowtest/set-event_variable_.dwl')]" />
+					<munit:variable key="gender" value="#[output application/json --- readUrl('classpath://commonhttprequestflowtest/set-event_variable_1.dwl')]" encoding="UTF-8" mediaType="application/json" />
+					<munit:variable key="paginationAccumulator" value="#[output application/json --- readUrl('classpath://commonhttprequestflowtest/set-event_variable_2.dwl')]" encoding="UTF-8" mediaType="application/json" />
+					<munit:variable key="httpRequest" value="#[output application/json --- readUrl('classpath://commonhttprequestflowtest/set-event_variable_3.dwl')]" encoding="UTF-8" mediaType="application/json" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to common-http-request-flow" doc:id="7467d0d2-8844-43cc-8d0e-3a09706101a8" name="common-http-request-flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="1925309c-1bf0-4dab-8819-6be52a8b9f57" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import commonhttprequestflowtest::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+
+</mule>

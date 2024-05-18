@@ -1,0 +1,32 @@
+#Local Environment Properties#
+api:
+  id: "TBD"
+  basePath: "/api/v1"
+
+http:
+  host: "0.0.0.0"
+  port: "8081"
+
+#External Systems#
+swapi: 
+  host: "swapi.dev"
+  port: "443"
+  basePath: "/api"
+  responseTimeout: "20000"
+#Endpoints#  
+  getHealthcheck:
+    method: "GET"
+    path: "/"
+  getPeople:
+    method: "GET"
+    path: "/people"
+  getHomeworld:
+    method: "GET"
+  getFilms:
+    method: "GET"
+  getSpecies:
+    method: "GET"
+  getVehicles:
+    method: "GET"
+  getStarships:
+    method: "GET"

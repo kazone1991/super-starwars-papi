@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow
+		name="get-characters-flow"
+		doc:id="f8fcbcee-3a3c-4605-a29f-642c2134ef9f">
+		<logger
+			level="INFO"
+			doc:name="Getting First Page"
+			doc:id="6f0f043f-5bd3-49ae-9323-f62da04443ba"
+			message='#["START - GET CHARACTERS - " ++ correlationId]' />
+		<flow-ref doc:name="get-characters-first-page-subfllow" doc:id="327494ad-f5f8-4e1b-bd13-1a56a8483a4f" name="get-characters-first-page-subfllow"/>
+		<flow-ref doc:name="get-characters-pagination-subflow" doc:id="05a50248-24e0-4e38-8b3c-d053f3dd6cd6" name="get-characters-pagination-subflow"/>
+		<choice doc:name="Hypermedia Search is needed?" doc:id="a8665372-edb5-4741-bc61-b18263239204" >
+			<when expression='#[vars.hypermediaSearch == "yes"]'>
+				<flow-ref doc:name="get-characters-hypermedia-flow" doc:id="85d31d2b-26cb-42b5-bb17-dd8cb19986b7" name="get-characters-hypermedia-flow" />
+			</when>
+			<otherwise >
+				<ee:transform doc:name="Map Results to CSV Format" doc:id="f3622a71-f39c-40d2-a246-f2231dbfb920" >
+					<ee:message >
+						<ee:set-payload resource="dw/implementations/getCharacters/setCSVBasicSearchPayload.dwl" />
+					</ee:message>
+				</ee:transform>
+			</otherwise>
+		</choice>
+		<logger
+			level="INFO"
+			doc:name="End Get Characters Process"
+			doc:id="72b8a1d5-91c8-49be-82db-690227c39738"
+			message='#["COMPLETED - GET CHARACTERS - " ++ correlationId]' />
+	</flow>
+	<sub-flow name="get-characters-first-page-subfllow" doc:id="bc5aa4fb-4a52-418f-9b4c-b80e030aa121" >
+		<ee:transform doc:name="Set Get Characters Variables" doc:id="bda372e6-97e0-4120-9ada-b88f301e3fe6">
+			<ee:message />
+			<ee:variables>
+				<ee:set-variable resource="dw/implementations/getCharacters/setGenderVariable.dwl" variableName="gender" />
+				<ee:set-variable resource="dw/implementations/getCharacters/setPaginationAccumulatorVariable.dwl" variableName="paginationAccumulator" />
+				<ee:set-variable resource="dw/implementations/getCharacters/setGetPeopleHttpRequestVariable.dwl" variableName="httpRequest" />
+				<ee:set-variable resource="dw/implementations/getCharacters/setHypermediaSearchVariable.dwl" variableName="hypermediaSearch" />
+			</ee:variables>
+		</ee:transform>
+		<flow-ref doc:name="common-http-request-flow" doc:id="0c090b36-52e6-4ee8-9b8a-b8f866f63a0c" name="common-http-request-flow" />
+		<ee:transform doc:name="Save First Page Results in Accumulator Variable" doc:id="22fa2a74-d0cd-4b59-b9d6-409ac821fabc">
+			<ee:message />
+			<ee:variables>
+				<ee:set-variable resource="dw/implementations/getCharacters/setFirstPagePaginationAccumulatorVariable.dwl" variableName="paginationAccumulator" />
+			</ee:variables>
+		</ee:transform>
+	</sub-flow>
+	<sub-flow name="get-characters-pagination-subflow" doc:id="8db2b672-cabc-4cfa-9aad-d301425ad3e7" >
+		<choice doc:name="Does Have More Pages?" doc:id="454cf3ff-6810-4962-8fc2-143ee826c13e">
+			<when expression="#[!isEmpty(payload.next)]">
+				<ee:transform doc:name="Set Pagination Variables" doc:id="9b32dc76-1539-4edc-b8f0-fb10842809f6">
+					<ee:message />
+					<ee:variables>
+						<ee:set-variable resource="dw/implementations/getCharacters/setPagesVariable.dwl" variableName="pages" />
+					</ee:variables>
+				</ee:transform>
+				<parallel-foreach doc:name="For Each Page - Parallel" doc:id="51022620-2c01-4d8e-ba53-02cf0bf11dd4" collection="#[vars.pages]" target="characters">
+					<logger level="INFO" doc:name="Page Number" doc:id="66fc0b60-16e6-419f-923a-1898b72cfb93" message='#["PROCCESING PAGE NUMBER: " ++ payload]' />
+					<ee:transform doc:name="Set httpRequest Variable" doc:id="da5cf268-94a8-4f52-a919-19ce8ece20bd">
+						<ee:message />
+						<ee:variables>
+							<ee:set-variable resource="dw/implementations/getCharacters/setPaginationHttpRequestVariable.dwl" variableName="httpRequest" />
+						</ee:variables>
+					</ee:transform>
+					<flow-ref doc:name="common-http-request-flow" doc:id="9aeef9c5-949a-4f52-9e71-1af8c90acdd4" name="common-http-request-flow" />
+				</parallel-foreach>
+				<ee:transform doc:name="Save Pages Results in Accumulator Variable" doc:id="e48e9af5-2861-4ad5-b1ea-3611fa0b31ad">
+					<ee:message />
+					<ee:variables>
+						<ee:set-variable resource="dw/implementations/getCharacters/setPagesResultsAccumulatorVariable.dwl" variableName="paginationAccumulator" />
+					</ee:variables>
+				</ee:transform>
+			</when>
+			<otherwise>
+				<logger level="INFO" doc:name="No More Pages" doc:id="45be924d-a96d-405b-a913-a1750f807a4a" message='#["NO MORE PAGES TO PROCESS - GET CHARACTERS - " ++ correlationId]' />
+			</otherwise>
+		</choice>
+	</sub-flow>
+</mule>

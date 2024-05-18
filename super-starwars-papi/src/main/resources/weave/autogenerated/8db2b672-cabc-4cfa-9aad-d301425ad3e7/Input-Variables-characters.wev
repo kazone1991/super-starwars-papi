@@ -1,0 +1,12 @@
+%dw 2.0
+
+type auto_8db2b672_cabc_4cfa_9aad_d301425ad3e7_Input_Variables_characters = Array<{|  attributes*: org_mule_extension_http_api_HttpResponseAttributes,   payload*: Any|}>
+type org_mule_extension_http_api_HttpResponseAttributes = {|
+  statusCode: Number, 
+  reasonPhrase: String, 
+  headers: { _?: String }
+|} {"typeAlias": "HttpResponseAttributes",
+"typeId": "org.mule.extension.http.api.HttpResponseAttributes"}
+
+
+

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="get-characters-hypermedia-flow" doc:id="0c496021-3ab4-4858-aa52-ffe5cf7d5eef" >
+		<logger level="INFO" doc:name="Hypermedia Data Process" doc:id="4debac35-13b0-4dcf-b8e9-8d0a6fc5fdbd" message='#["START HYPERMEDIA DATA PROCCESS - GET CHARACTERS - " ++ correlationId]' />
+		<parallel-foreach doc:name="For Each Character - Parallel" doc:id="cc8da6de-6d1d-4891-965a-37dd66602cae" collection="#[vars.paginationAccumulator]" >
+			<flow-ref doc:name="get-characters-homeworld-subflow" doc:id="0240969c-09e3-46f7-8d59-d6bfb66458bb" name="get-characters-homeworld-subflow" />
+			<flow-ref doc:name="get-characters-films-subflow" doc:id="b0c0a94c-4026-44c4-a53e-621d2bdb719f" name="get-characters-films-subflow" />
+			<flow-ref doc:name="get-characters-species-subflow" doc:id="8bf00948-6d7e-4f10-9851-f19840f4cf2e" name="get-characters-species-subflow" />
+			<flow-ref doc:name="get-characters-vehicles-subflow" doc:id="958e617d-6733-45d7-83b7-68647bbd3d3a" name="get-characters-vehicles-subflow" />
+			<flow-ref doc:name="get-characters-starships-subflow" doc:id="3135a63c-89f4-40fd-a0a7-3ef15402bd20" name="get-characters-starships-subflow" />
+		</parallel-foreach>
+		<ee:transform doc:name="Map Results to CSV Format" doc:id="98054f24-f125-41a7-8d33-b545f29b72e3" >
+			<ee:message >
+				<ee:set-payload resource="dw/implementations/getCharacters/setCsvPayloadResponse.dwl" />
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<sub-flow name="get-characters-homeworld-subflow" doc:id="fcbd8c7b-5b31-4589-9fe9-0b1f2c392ac6" >
+		<choice doc:name="Does Character have a Homeworld?" doc:id="f0cac492-7e80-47a0-ba30-810db853f9a8">
+			<when expression="#[!isEmpty(payload.homeworld)]">
+				<logger level="INFO" doc:name="Homeworld Hypermedia Data" doc:id="49af49d8-4705-4bc0-93b9-00b3dc07cd3d" message='#["VALIDATING HOMEWORLD HYPERMEDIA URL"]' />
+				<ee:transform doc:name="Set httpRequest Variable" doc:id="87997a44-d4c6-4b52-8d5a-1839656b324c">
+					<ee:message />
+					<ee:variables>
+						<ee:set-variable resource="dw/implementations/getCharacters/setGetPlanetHttpRquestVariable.dwl" variableName="httpRequest" />
+					</ee:variables>
+				</ee:transform>
+				<flow-ref doc:name="common-http-request-flow" doc:id="28c3361a-e164-4e9b-a5d7-4f1424e4837b" name="common-http-request-flow" target="characterPlanet" targetValue='#[output application/json --- payload.name default ""]' />
+				<ee:transform doc:name="Update homeworld in Payload" doc:id="b8b994a5-92d4-4dc8-b1e1-d564c7c65dab">
+					<ee:message>
+						<ee:set-payload resource="dw/implementations/getCharacters/updatePlanetPayload.dwl" />
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise>
+				<logger level="INFO" doc:name="No Homeworld Hypermedia Data" doc:id="08d637ed-aa16-4b9d-956b-5da83ea36673" message='#["CHARACTER DOES NOT HAVE A HOMEWORLD HYPERMEDIA URL - SKIPPING PROCESS"]' />
+			</otherwise>
+		</choice>
+	</sub-flow>
+	<sub-flow name="get-characters-films-subflow" doc:id="77330aae-3d8c-4d00-9505-95e4cfd8f249" >
+		<choice doc:name="Does Character have Films?" doc:id="cd90d357-8b64-4c16-b95d-afa387ee39bd">
+			<when expression="#[!isEmpty(payload.films)]">
+				<logger level="INFO" doc:name="Films Hypermedia Data" doc:id="359e4a6a-be3d-469f-af40-98bff4dd0a77" message='#["VALIDATING FILMS HYPERMEDIA URLs"]' />
+				<parallel-foreach doc:name="For Each Film - Parallel" doc:id="dc38b04f-eceb-4041-b7cb-2c5a9f92a200" collection="#[payload.films]" target="characterFilms">
+					<ee:transform doc:name="Set httpRequest Variable" doc:id="ccb3f69a-d78e-485e-af1f-22c239a69157">
+						<ee:message />
+						<ee:variables>
+							<ee:set-variable resource="dw/implementations/getCharacters/setGetFilmsHttpRequestVariable.dwl" variableName="httpRequest" />
+						</ee:variables>
+					</ee:transform>
+					<flow-ref doc:name="common-http-request-flow" doc:id="74be668d-1d60-40a7-ba04-d5dec1e7b78c" name="common-http-request-flow" />
+				</parallel-foreach>
+				<ee:transform doc:name="Update Films in Payload" doc:id="8cc1dc6d-7db4-442c-a8ee-618e7fad1d95">
+					<ee:message>
+						<ee:set-payload resource="dw/implementations/getCharacters/updateFilmsPayload.dwl" />
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise>
+				<logger level="INFO" doc:name="No Films Hypermedia Data" doc:id="2270b829-c012-4f2c-bb3f-aa69838adace" message='#["CHARACTER DOES NOT HAVE A FILMS HYPERMEDIA URLs - SKIPPING PROCESS"]' />
+			</otherwise>
+		</choice>
+	</sub-flow>
+	<sub-flow name="get-characters-species-subflow" doc:id="12ff4e15-265f-4d5c-96a5-a57bdb7cbd44" >
+		<choice doc:name="Does Character have Species?" doc:id="d3310d2a-a830-40a6-b3be-3d2e3e321eb7">
+			<when expression="#[!isEmpty(payload.species)]">
+				<logger level="INFO" doc:name="Species Hypermedia Data" doc:id="2cc8c297-8497-49b9-874b-2befcad55018" message='#["VALIDATING SPECIES HYPERMEDIA URLs"]' />
+				<parallel-foreach doc:name="For Each Specie - Parallel" doc:id="2691ded5-250a-4e8e-9f5f-5f688689a3b3" collection="#[payload.species]" target="characterSpecies">
+					<ee:transform doc:name="Set httpRequest Variable" doc:id="efa87eff-b922-412e-aa43-eb4f6794207a">
+						<ee:message />
+						<ee:variables>
+							<ee:set-variable resource="dw/implementations/getCharacters/setGetSpeciesHttpRequestVariable.dwl" variableName="httpRequest" />
+						</ee:variables>
+					</ee:transform>
+					<flow-ref doc:name="common-http-request-flow" doc:id="bc841d92-b8b3-4577-9bf9-ea7df0e3ef43" name="common-http-request-flow" />
+				</parallel-foreach>
+				<ee:transform doc:name="Update Species in Payload" doc:id="cbab4d37-2e63-4b14-bfad-17c3f084fc7d">
+					<ee:message>
+						<ee:set-payload resource="dw/implementations/getCharacters/updateSpeciesPayload.dwl" />
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise>
+				<logger level="INFO" doc:name="No Species Hypermedia Data" doc:id="9afd6588-9805-4f51-80d2-c3e18a4752ee" message='#["CHARACTER DOES NOT HAVE A SPECIES HYPERMEDIA URLs - SKIPPING PROCESS"]' />
+			</otherwise>
+		</choice>
+	</sub-flow>
+	<sub-flow name="get-characters-vehicles-subflow" doc:id="d62f1ec8-5699-4b66-879b-23fc896a7e34" >
+		<choice doc:name="Does Character have Vehicles?" doc:id="27d1e219-e72a-4f1e-baa6-ca154392a447">
+			<when expression="#[!isEmpty(payload.vehicles)]">
+				<logger level="INFO" doc:name="Vehicles Hypermedia Data" doc:id="232013f2-7f25-47f0-a18f-7a5e68568e7a" message='#["VALIDATING VEHICLES HYPERMEDIA URLs"]' />
+				<parallel-foreach doc:name="For Each Vehicle - Parallel" doc:id="ecdd470c-e709-4a74-8352-02f6fcab8eea" collection="#[payload.vehicles]" target="characterVehicles">
+					<ee:transform doc:name="Set httpRequest Variable" doc:id="3002dc7c-54ae-4c70-b99e-de98292133d4">
+						<ee:message />
+						<ee:variables>
+							<ee:set-variable resource="dw/implementations/getCharacters/setGetVehiclesHttpRequestVariable.dwl" variableName="httpRequest" />
+						</ee:variables>
+					</ee:transform>
+					<flow-ref doc:name="common-http-request-flow" doc:id="88e88c7c-c83b-4f72-b464-fc0730cf2921" name="common-http-request-flow" />
+				</parallel-foreach>
+				<ee:transform doc:name="Update Vehicles in Payload" doc:id="a302f9b4-02dd-4fc0-a0c6-967c02cd1b43">
+					<ee:message>
+						<ee:set-payload resource="dw/implementations/getCharacters/updateVehiclesPayload.dwl" />
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise>
+				<logger level="INFO" doc:name="No Vehicles Hypermedia Data" doc:id="d4df0884-4461-4ca9-b765-c0cc29a47033" message='#["CHARACTER DOES NOT HAVE VEHICLES HYPERMEDIA URLs - SKIPPING PROCESS"]' />
+			</otherwise>
+		</choice>
+	</sub-flow>
+	<sub-flow name="get-characters-starships-subflow" doc:id="de407554-57be-46ed-83d3-c5c26b47bd5f" >
+		<choice doc:name="Does Character have Starships?" doc:id="683024c8-7abb-41da-9a02-ebb0d5190d75">
+			<when expression="#[!isEmpty(payload.starships)]">
+				<logger level="INFO" doc:name="Starships Hypermedia Data" doc:id="3d6320b3-a74c-43fb-b4e6-2dd41a4954cc" message='#["VALIDATING STARSHIPS HYPERMEDIA URLs"]' />
+				<parallel-foreach doc:name="For Each Starship - Parallel" doc:id="62c700ea-3344-4337-a6da-4bb8e5afc0e9" collection="#[payload.starships]" target="characterStarships">
+					<ee:transform doc:name="Set httpRequest Variable" doc:id="b0c7e361-9831-455f-b921-20a68b6f4f35">
+						<ee:message />
+						<ee:variables>
+							<ee:set-variable resource="dw/implementations/getCharacters/setGetStarshipsHttpRequestVariable.dwl" variableName="httpRequest" />
+						</ee:variables>
+					</ee:transform>
+					<flow-ref doc:name="common-http-request-flow" doc:id="5bc888dc-bae1-4e5d-a96e-5525136bc8fa" name="common-http-request-flow" />
+				</parallel-foreach>
+				<ee:transform doc:name="Update Starships in Payload" doc:id="1f944b20-f96c-4fe0-8398-cf1a0d36af77">
+					<ee:message>
+						<ee:set-payload resource="dw/implementations/getCharacters/updateStarshipsPayload.dwl" />
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise>
+				<logger level="INFO" doc:name="No Starships Hypermedia Data" doc:id="40eded29-18ed-4a27-938e-fddf29f6472a" message='#["CHARACTER DOES NOT HAVE STARSHIPS HYPERMEDIA URLs - SKIPPING PROCESS"]' />
+			</otherwise>
+		</choice>
+	</sub-flow>
+</mule>

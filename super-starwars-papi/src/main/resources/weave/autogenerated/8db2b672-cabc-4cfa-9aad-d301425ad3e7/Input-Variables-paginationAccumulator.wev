@@ -1,0 +1,4 @@
+%dw 2.0
+
+type auto_8db2b672_cabc_4cfa_9aad_d301425ad3e7_Input_Variables_paginationAccumulator = Array<Nothing>
+

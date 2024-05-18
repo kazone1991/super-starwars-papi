@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow
+		name="get-healthcheck-implementation"
+		doc:id="5b487958-c262-40b2-b516-1d7956f63732">
+		<ee:transform
+			doc:name="Set httpRequest Variable"
+			doc:id="727ef4b9-9448-470a-b58f-0d785179d25d">
+			<ee:message>
+			</ee:message>
+			<ee:variables>
+				<ee:set-variable
+					resource="dw/implementations/healthcheck/setHttpRequestVariable.dwl"
+					variableName="httpRequest" />
+			</ee:variables>
+		</ee:transform>
+		<try
+			doc:name="Try"
+			doc:id="d0c62e41-58d0-4b09-bd6e-a8135ced821a">
+			<flow-ref
+				doc:name="common-http-request-flow"
+				doc:id="24a80372-aa2d-470f-8236-39f151d74748"
+				name="common-http-request-flow" />
+			<ee:transform
+				doc:name="Set Health Response - OK"
+				doc:id="63ca93f1-9ee2-4c73-bedc-d89c25c09341">
+				<ee:message>
+					<ee:set-payload
+						resource="dw/implementations/healthcheck/setHealthCheckOkResponse.dwl" />
+				</ee:message>
+			</ee:transform>
+			<error-handler>
+				<on-error-continue
+					enableNotifications="true"
+					logException="true"
+					doc:name="On Error Continue"
+					doc:id="b3c95e86-66de-43cb-9f6d-5a77ae8ac6c6">
+					<ee:transform
+						doc:name="Set Health Response - DOWN"
+						doc:id="41100782-c10c-443b-8693-92a7a05e18da">
+						<ee:message>
+							<ee:set-payload
+								resource="dw/implementations/healthcheck/setHealthCheckDownResponse.dwl" />
+						</ee:message>
+						<ee:variables>
+							<ee:set-variable variableName="httpStatus"><![CDATA[500]]></ee:set-variable>
+						</ee:variables>
+					</ee:transform>
+				</on-error-continue>
+			</error-handler>
+		</try>
+	</flow>
+</mule>

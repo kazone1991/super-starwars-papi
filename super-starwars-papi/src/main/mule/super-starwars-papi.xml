@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
+	<flow name="super-starwars-papi-main">
+		<http:listener
+			config-ref="apiHttpListenerConfig"
+			path="${api.basePath}/*">
+			<http:response
+				statusCode="#[vars.httpStatus default 200]">
+				<http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+			</http:response>
+			<http:error-response
+				statusCode="#[vars.httpStatus default 500]">
+				<http:body><![CDATA[#[payload]]]></http:body>
+				<http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+			</http:error-response>
+		</http:listener>
+		<apikit:router config-ref="super-starwars-papi-config" doc:id="b0992195-ab0a-4cbd-acd9-f466762a208c"/>
+		<error-handler ref="common-error-handler" />
+	</flow>
+	<flow name="get:\characters:super-starwars-papi-config">
+		<flow-ref
+			doc:name="get-characters-flow"
+			doc:id="4c693a9a-8dee-463e-a681-3afceecd0c8d"
+			name="get-characters-flow" />
+	</flow>
+	<flow name="get:\healthcheck:super-starwars-papi-config">
+		<flow-ref doc:name="get-healthcheck-implementation" doc:id="7abbf6dc-3205-4ca7-9def-646078a569b3" name="get-healthcheck-implementation"/>
+	</flow>
+</mule>

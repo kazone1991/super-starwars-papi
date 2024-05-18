@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow
+		name="common-http-request-flow"
+		doc:id="42dc7d1e-2413-4147-90f7-3c173b6878ab">
+		<http:request
+			method="#[vars.httpRequest.method]"
+			doc:name="Common HTTP Request"
+			doc:id="d8f63a1f-983b-469d-bc0f-31433c264137"
+			config-ref="commonHTTPRequestConfiguration"
+			path="#[vars.httpRequest.path]"
+			sendCorrelationId="AUTO" outputMimeType="application/json" responseTimeout="#[vars.httpRequest.timeout]">
+			<http:headers><![CDATA[#[vars.httpRequest.header default {}]]]></http:headers>
+			<http:uri-params><![CDATA[#[vars.httpRequest.uri default {}]]]></http:uri-params>
+			<http:query-params ><![CDATA[#[vars.httpRequest.query default {}]]]></http:query-params>
+		</http:request>
+	</flow>
+</mule>
