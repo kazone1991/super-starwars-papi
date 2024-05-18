@@ -11,7 +11,7 @@ vars must [
   $['httpRequest'] must equalTo({
     "host": "swapi.dev",
     "port": "443",
-    "timeout": "15000",
+    "timeout": "20000",
     "basePath": "/api",
     "method": "GET",
     "path": "/people"

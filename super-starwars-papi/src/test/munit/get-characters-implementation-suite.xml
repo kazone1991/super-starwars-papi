@@ -66,7 +66,7 @@
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 			<munit-tools:mock-when
-				doc:name="Mock get-characters-first-page-subfllow"
+				doc:name="Mock get-characters-first-page-subflow"
 				doc:id="45ed70e6-f0fd-4228-8bcf-5b5da80bf666"
 				processor="flow-ref">
 				<munit-tools:with-attributes>
@@ -283,7 +283,7 @@ spy_assert_variables2::main({payload: payload, attributes: attributes, vars: var
 			<flow-ref
 				doc:name="Flow-ref to get-characters-first-page-subfllow"
 				doc:id="904488d9-5610-4d6d-8dfc-fb65d6a73a5f"
-				name="get-characters-first-page-subfllow" />
+				name="get-characters-first-page-subflow" />
 		</munit:execution>
 		<munit:validation>
 			<munit-tools:assert

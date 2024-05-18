@@ -16,9 +16,9 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 			doc:id="6f0f043f-5bd3-49ae-9323-f62da04443ba"
 			message='#["START - GET CHARACTERS - " ++ correlationId]' />
 		<flow-ref
-			doc:name="get-characters-first-page-subfllow"
+			doc:name="get-characters-first-page-subflow"
 			doc:id="327494ad-f5f8-4e1b-bd13-1a56a8483a4f"
-			name="get-characters-first-page-subfllow" />
+			name="get-characters-first-page-subflow" />
 		<flow-ref
 			doc:name="get-characters-pagination-subflow"
 			doc:id="05a50248-24e0-4e38-8b3c-d053f3dd6cd6"
@@ -50,7 +50,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 			message='#["COMPLETED - GET CHARACTERS - " ++ correlationId]' />
 	</flow>
 	<sub-flow
-		name="get-characters-first-page-subfllow"
+		name="get-characters-first-page-subflow"
 		doc:id="bc5aa4fb-4a52-418f-9b4c-b80e030aa121">
 		<ee:transform
 			doc:name="Set Get Characters Variables"

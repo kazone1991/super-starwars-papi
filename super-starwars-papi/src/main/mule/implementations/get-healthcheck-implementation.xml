@@ -46,13 +46,10 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 						doc:name="Set Health Response - DOWN"
 						doc:id="41100782-c10c-443b-8693-92a7a05e18da">
 						<ee:message>
-							<ee:set-payload
-								resource="dw/implementations/healthcheck/setHealthCheckDownResponse.dwl" />
+							<ee:set-payload resource="dw/implementations/healthcheck/setHealthCheckDownResponse.dwl" />
 						</ee:message>
 						<ee:variables>
-							<ee:set-variable
-								resource="setHealthCheckDownHttpStatus.dwl"
-								variableName="httpStatus" />
+							<ee:set-variable resource="dw/implementations/healthcheck/setHealthCheckDownHttpStatus.dwl" variableName="httpStatus" />
 						</ee:variables>
 					</ee:transform>
 				</on-error-continue>
